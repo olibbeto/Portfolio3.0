@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio — Oliyad Beto</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+
+<header id="main-header">
+  <a href="index.html" class="logo">Oliyad Beto</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="skills.html">Skills</a>
+    <a href="experience.html">Experience</a>
+    <a href="portfolio.html" class="active">Portfolio</a>
+    <button class="toggle-mode-btn" id="theme-toggle" aria-label="Toggle theme">
+      <i class="fa-solid fa-moon"></i>
+    </button>
+  </nav>
+</header>
+
+<main>
+  <div class="page-section">
+    <div class="page-header">
+      <span class="tag">What I've built</span>
+      <h1>My <span>Projects</span></h1>
+      <p>A collection of projects I've built — from banking systems to games, e-commerce platforms to personal websites.</p>
+    </div>
+
+    <div class="project-grid">
+
+      <div class="project-card" style="animation-delay:0.1s">
+        <div class="img-wrap">
+          <img src="images/photo_2025-08-19_02-33-31.jpg" alt="Bank Management System">
+          <div class="overlay"></div>
+        </div>
+        <div class="body">
+          <h2>Bank Management System</h2>
+          <p>A full-featured Bank Management System built with C# simulating core banking operations — account creation, deposits, withdrawals, and balance inquiries — with MySQL database connectivity.</p>
+          <div class="project-tags">
+            <span class="tag-chip">C#</span>
+            <span class="tag-chip">.NET</span>
+            <span class="tag-chip">MySQL</span>
+            <span class="tag-chip">OOP</span>
+          </div>
+          <a href="#" class="btn btn-outline" style="font-size:1.3rem; padding:0.8rem 1.8rem;">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> View Project
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card" style="animation-delay:0.2s">
+        <div class="img-wrap">
+          <img src="images/photo_2025-08-19_02-35-19.jpg" alt="Snake Game">
+          <div class="overlay"></div>
+        </div>
+        <div class="body">
+          <h2>Snake Game</h2>
+          <p>An interactive Snake game built with Java Swing/AWT featuring core game logic, user input handling, and a persistent leaderboard powered by MySQL via JDBC for multi-player score tracking.</p>
+          <div class="project-tags">
+            <span class="tag-chip">Java</span>
+            <span class="tag-chip">Swing/AWT</span>
+            <span class="tag-chip">JDBC</span>
+            <span class="tag-chip">MySQL</span>
+          </div>
+          <a href="#" class="btn btn-outline" style="font-size:1.3rem; padding:0.8rem 1.8rem;">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> View Project
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card" style="animation-delay:0.3s">
+        <div class="img-wrap">
+          <img src="images/photo_2025-08-19_02-22-12.jpg" alt="E-Commerce Website">
+          <div class="overlay"></div>
+        </div>
+        <div class="body">
+          <h2>E-Commerce Website</h2>
+          <p>A buying and selling platform with separate user and admin roles, authentication flows, product management, order tracking, and user profile management — built with HTML, CSS and JavaScript.</p>
+          <div class="project-tags">
+            <span class="tag-chip">HTML5</span>
+            <span class="tag-chip">CSS3</span>
+            <span class="tag-chip">JavaScript</span>
+          </div>
+          <a href="#" class="btn btn-outline" style="font-size:1.3rem; padding:0.8rem 1.8rem;">
+            <i class="fa-solid fa-arrow-up-right-from-square"></i> View Project
+          </a>
+        </div>
+      </div>
+
+      <div class="project-card" style="animation-delay:0.4s">
+        <div class="img-wrap">
+          <img src="images/photo_2025-08-18_23-36-09.jpg" alt="Portfolio Website">
+          <div class="overlay"></div>
+        </div>
+        <div class="body">
+          <h2>Portfolio Website</h2>
+          <p>A personal portfolio website built with HTML, CSS and JavaScript — fully responsive with a clean UI/UX, project showcase section, and contact form. Live on GitHub Pages.</p>
+          <div class="project-tags">
+            <span class="tag-chip">HTML5</span>
+            <span class="tag-chip">CSS3</span>
+            <span class="tag-chip">JavaScript</span>
+          </div>
+          <a href="https://github.com/olibbeto/Portfolio" target="_blank" class="btn btn-outline" style="font-size:1.3rem; padding:0.8rem 1.8rem;">
+            <i class="fa-brands fa-github"></i> View on GitHub
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <a href="index.html" class="back-btn" style="margin-top:3rem"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2025 <span>Oliyad Beto</span>. All rights reserved.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>

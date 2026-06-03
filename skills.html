@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Skills — Oliyad Beto</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<canvas id="particles-canvas"></canvas>
+
+<header id="main-header">
+  <a href="index.html" class="logo">Oliyad Beto</a>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="skills.html" class="active">Skills</a>
+    <a href="experience.html">Experience</a>
+    <a href="portfolio.html">Portfolio</a>
+    <button class="toggle-mode-btn" id="theme-toggle" aria-label="Toggle theme">
+      <i class="fa-solid fa-moon"></i>
+    </button>
+  </nav>
+</header>
+
+<main>
+  <div class="page-section">
+    <div class="page-header">
+      <span class="tag">What I know</span>
+      <h1>My <span>Skills</span></h1>
+      <p>A blend of technical expertise and soft skills developed through real-world projects and continuous learning.</p>
+    </div>
+
+    <div class="skills-grid-2col">
+      <div class="card reveal" style="animation-delay:0.1s">
+        <h2><i class="fa-solid fa-laptop-code"></i> Technical Skills</h2>
+        <ul class="skill-list">
+          <li><i class="fa-brands fa-html5"></i> HTML &amp; CSS</li>
+          <li><i class="fa-brands fa-js"></i> JavaScript</li>
+          <li><i class="fa-solid fa-code"></i> C#</li>
+          <li><i class="fa-brands fa-python"></i> Python</li>
+          <li><i class="fa-brands fa-java"></i> Java</li>
+          <li><i class="fa-solid fa-database"></i> SQL / MySQL</li>
+        </ul>
+      </div>
+
+      <div class="card reveal" style="animation-delay:0.2s">
+        <h2><i class="fa-solid fa-brain"></i> Soft Skills</h2>
+        <ul class="skill-list">
+          <li><i class="fa-solid fa-comments"></i> Communication</li>
+          <li><i class="fa-solid fa-people-group"></i> Teamwork</li>
+          <li><i class="fa-solid fa-puzzle-piece"></i> Problem-solving</li>
+          <li><i class="fa-solid fa-clock"></i> Time Management</li>
+          <li><i class="fa-solid fa-rotate"></i> Adaptability</li>
+          <li><i class="fa-solid fa-book-open"></i> Continuous Learning</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card reveal" style="animation-delay:0.3s">
+      <h2><i class="fa-solid fa-chart-bar"></i> Skill Proficiency</h2>
+      <br>
+      <div class="skill-bar-wrap">
+        <div class="label"><span>HTML &amp; CSS</span><span>88%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-width="88"></div></div>
+      </div>
+      <div class="skill-bar-wrap">
+        <div class="label"><span>JavaScript</span><span>80%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-width="80"></div></div>
+      </div>
+      <div class="skill-bar-wrap">
+        <div class="label"><span>C#</span><span>83%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-width="83"></div></div>
+      </div>
+      <div class="skill-bar-wrap">
+        <div class="label"><span>Python</span><span>70%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-width="70"></div></div>
+      </div>
+      <div class="skill-bar-wrap">
+        <div class="label"><span>Java</span><span>60%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-width="60"></div></div>
+      </div>
+      <div class="skill-bar-wrap">
+        <div class="label"><span>SQL / MySQL</span><span>75%</span></div>
+        <div class="bar-track"><div class="bar-fill" data-width="75"></div></div>
+      </div>
+    </div>
+
+    <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2025 <span>Oliyad Beto</span>. All rights reserved.</p>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
