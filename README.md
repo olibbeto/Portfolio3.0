@@ -15,7 +15,6 @@
 
 ---
 
-<img align="right" width="380" src="https://github-readme-stats.vercel.app/api?username=olibbeto&show_icons=true&theme=radical&hide_border=true&bg_color=0d1117&title_color=e0334c&icon_color=e0334c&text_color=ffffff&ring_color=e0334c" />
 
 ### 👋 Who am I?
 
