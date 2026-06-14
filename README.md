@@ -17,38 +17,56 @@
 
 <img align="right" width="380" src="https://github-readme-stats.vercel.app/api?username=olibbeto&show_icons=true&theme=radical&hide_border=true&bg_color=0d1117&title_color=e0334c&icon_color=e0334c&text_color=ffffff&ring_color=e0334c" />
 
-## 🔥 Portfolio 3.0 — Built Different
-
-> No templates. No Webflow. Pure HTML · CSS · JavaScript · Three.js
-
-| Effect | What it does |
-|--------|-------------|
-| 🔴 Three.js Scene | Wireframe 3D fragments that follow your mouse in real time |
-| 🃏 Card Tilt | Every card tilts in 3D with a specular light that follows your cursor |
-| 🧲 Magnetic Buttons | CTAs that physically chase your cursor |
-| 🌊 Parallax Depth | Layered scroll so the page feels like it has actual Z-axis |
-| 💀 Glitch Text | Name glitches with a double-image chromatic effect |
-| 🔮 Skill Orbs | Floating 3D tech icons — click one and it spins |
-| 🖱 Custom Cursor | Lagging ring cursor that expands on hover |
-| 🌀 Ripple Click | Project cards emit a shockwave on click |
-
-→ [olibbeto.github.io/Portfolio3.0](https://olibbeto.github.io/Portfolio3.0/)
-
-
----
-
 ### 👋 Who am I?
 
+```javascript
 const oliyad = {
   name:     "Oliyad Beto",
   role:     "Software Engineer",
   school:   "HiLCoE, Addis Ababa 🇪🇹",
+  gpa:      "3.0 / 4.0",
   focus:    ["Full-Stack Dev", "3D Web", "Cybersecurity"],
   building: "Websites that look like they're from 2027",
   motto:    "If it doesn't feel impossible, think bigger."
 };
+```
 
 <br clear="right"/>
+
+---
+
+## 🔥 Portfolio 3.0 — Built Different
+
+> **No templates. No Webflow. Pure HTML · CSS · JavaScript · Three.js**
+
+| Effect | What it does |
+|--------|-------------|
+| 🔴 **Three.js Scene** | Wireframe 3D fragments that follow your mouse in real time |
+| 🃏 **Card Tilt** | Every card tilts in 3D with a specular light that follows your cursor |
+| 🧲 **Magnetic Buttons** | CTAs that physically chase your cursor |
+| 🌊 **Parallax Depth** | Layered scroll so the page feels like it has actual Z-axis |
+| 💀 **Glitch Text** | Name glitches with a double-image chromatic effect |
+| 🔮 **Skill Orbs** | Floating 3D tech icons — click one and it spins |
+| 🖱️ **Custom Cursor** | Lagging ring cursor that expands on hover |
+| 🌀 **Ripple Click** | Project cards emit a shockwave on click |
+
+**→ [olibbeto.github.io/Portfolio3.0](https://olibbeto.github.io/Portfolio3.0/)**
+
+---
+
+## 🚀 Projects
+
+<div align="center">
+
+| Project | Stack | Description | Link |
+|---------|-------|-------------|------|
+| **Portfolio 3.0** | HTML · CSS · JS · Three.js | 3D interactive portfolio with mouse-reactive scene | [Live ↗](https://olibbeto.github.io/Portfolio3.0/) |
+| **Benti Fluha Spa** | Next.js · TypeScript · Tailwind | Luxury spa & hotel website, full App Router | [Repo ↗](https://github.com/olibbeto) |
+| **Bank Management System** | Java · MySQL | Full banking system with accounts, transactions, reports | [Repo ↗](https://github.com/olibbeto) |
+| **E-Commerce Website** | React · Node · MongoDB | Full-stack store with cart, auth, and payment flow | [Repo ↗](https://github.com/olibbeto) |
+| **Snake Game** | JavaScript · Canvas | Classic snake, built from scratch with no libraries | [Repo ↗](https://github.com/olibbeto) |
+
+</div>
 
 ---
 
