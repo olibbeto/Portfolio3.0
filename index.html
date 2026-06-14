@@ -11,6 +11,13 @@
 
 <canvas id="particles-canvas"></canvas>
 
+<!-- Custom cursor -->
+<div class="cursor-dot" id="cursor-dot"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- Scroll progress bar -->
+<div class="scroll-indicator" id="scroll-bar"></div>
+
 <header id="main-header">
   <a href="index.html" class="logo">Oliyad Beto</a>
   <nav>
@@ -27,14 +34,52 @@
 
 <main>
   <section class="home">
-    <div class="home-img">
-      <img src="images/cv pic.jpg" alt="Oliyad Beto">
+
+    <!-- ── CYBER PROFILE BLOCK ── -->
+    <div class="home-img" id="profile-3d">
+      <!-- HUD Targeting Reticle Corners -->
+      <div class="hud-corner hud-tl"></div>
+      <div class="hud-corner hud-tr"></div>
+      <div class="hud-corner hud-bl"></div>
+      <div class="hud-corner hud-br"></div>
+
+      <!-- Sweeping scan line -->
+      <div class="profile-scan"></div>
+
+      <!-- Data badges -->
+      <div class="hud-badge hud-badge-top">
+        <span class="hud-dot"></span>IDENTITY_CONFIRMED
+      </div>
+      <div class="hud-badge hud-badge-bottom">
+        <span class="hud-dot hud-dot-green"></span>ACCESS_GRANTED
+      </div>
+
+      <!-- Rings & glow -->
+      <div class="ring2"></div>
+      <div class="ring3"></div>
+      <div class="glow-orb"></div>
+
+      <div class="home-img-inner" id="profile-inner">
+        <img src="images/cv pic.jpg" alt="Oliyad Beto">
+        <div class="shimmer-wrap"></div>
+      </div>
     </div>
 
+    <!-- ── CYBER CONTENT BLOCK ── -->
     <div class="home-content">
-      <p class="eyebrow">👋 Welcome to my portfolio</p>
-      <h1>Hello, I'm <span>Oliyad</span></h1>
-      <h3 class="text">I'm a <span></span></h3>
+      <p class="eyebrow">SYSTEM READY // INITIALIZING PROFILE</p>
+
+      <h1>
+        <span class="h1-greeting">&gt; Hello, I'm_</span>
+        <span class="cyber-name" data-text="Oliyad" id="name-glitch">Oliyad</span>
+      </h1>
+
+      <h3 class="text">
+        <span class="term-prompt">&gt;_</span>
+        <span class="term-typed" id="term-typed"></span>
+        <span class="term-cursor"></span>
+      </h3>
+
       <p>Welcome to my portfolio website. Here you can find information about all my projects and skills. Feel free to explore and get in touch!</p>
 
       <div class="info-grid">
@@ -44,12 +89,80 @@
         <div class="info-item"><i class="fa-brands fa-linkedin"></i><a href="https://www.linkedin.com/in/oliyad-beto-108540385/" target="_blank">LinkedIn</a></div>
       </div>
 
-      <div class="skill-pills">
-        <span class="pill"><i class="fa-brands fa-html5"></i> HTML & CSS</span>
-        <span class="pill"><i class="fa-brands fa-js"></i> JavaScript</span>
-        <span class="pill"><i class="fa-solid fa-code"></i> C#</span>
-        <span class="pill"><i class="fa-brands fa-python"></i> Python</span>
-        <span class="pill"><i class="fa-brands fa-java"></i> Java</span>
+      <!-- ── TECH ICON ROW ── -->
+      <div class="home-tech-grid">
+        <div class="home-tech-item">
+          <div class="home-tech-orb">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5">
+          </div>
+          <span>HTML5</span>
+        </div>
+        <div class="home-tech-item">
+          <div class="home-tech-orb">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3">
+          </div>
+          <span>CSS3</span>
+        </div>
+        <div class="home-tech-item">
+          <div class="home-tech-orb">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript">
+          </div>
+          <span>JS</span>
+        </div>
+        <div class="home-tech-item">
+          <div class="home-tech-orb">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React">
+          </div>
+          <span>React</span>
+        </div>
+        <div class="home-tech-item">
+          <div class="home-tech-orb">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="Node.js">
+          </div>
+          <span>Node.js</span>
+        </div>
+        <div class="home-tech-item">
+          <div class="home-tech-orb">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" alt="Express" style="filter:invert(1) brightness(0.8);">
+          </div>
+          <span>Express</span>
+        </div>
+        <div class="home-tech-item">
+          <div class="home-tech-orb">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python">
+          </div>
+          <span>Python</span>
+        </div>
+        <div class="home-tech-item">
+          <div class="home-tech-orb">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" alt="C#">
+          </div>
+          <span>C#</span>
+        </div>
+        <div class="home-tech-item">
+          <div class="home-tech-orb">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="Java">
+          </div>
+          <span>Java</span>
+        </div>
+        <div class="home-tech-item">
+          <div class="home-tech-orb">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL">
+          </div>
+          <span>MySQL</span>
+        </div>
+        <div class="home-tech-item">
+          <div class="home-tech-orb">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" alt="MongoDB">
+          </div>
+          <span>MongoDB</span>
+        </div>
+        <div class="home-tech-item">
+          <div class="home-tech-orb">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git">
+          </div>
+          <span>Git</span>
+        </div>
       </div>
 
       <div class="icons">
@@ -64,6 +177,7 @@
         <a href="about.html" class="btn btn-outline"><i class="fa-solid fa-user"></i> About Me</a>
       </div>
     </div>
+
   </section>
 </main>
 

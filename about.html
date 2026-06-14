@@ -81,6 +81,30 @@
       </form>
     </div>
 
+    <!-- ── LIVE COMMENTS SECTION ── -->
+    <div class="card reveal comments-section" style="animation-delay:0.4s; margin-top:3rem;">
+      <h2><i class="fa-solid fa-comments"></i> Visitor Comments</h2>
+      <p class="card-sub">Leave a message — visible to everyone who visits!</p>
+
+      <form id="comment-form" class="comment-form" autocomplete="off">
+        <div class="comment-inputs">
+          <input type="text" id="c-name" maxlength="40" placeholder="Your name" required>
+          <textarea id="c-message" maxlength="400" placeholder="Share your thoughts..." required rows="3"></textarea>
+        </div>
+        <div class="comment-form-footer">
+          <span id="comment-count" class="comment-count">0 comments</span>
+          <button type="submit" class="btn btn-primary" style="border:none; cursor:pointer; padding:0.9rem 2rem; font-size:1.3rem;">
+            <i class="fa-solid fa-paper-plane"></i> Post Comment
+          </button>
+        </div>
+        <div id="comment-status" class="comment-status" style="display:none;"></div>
+      </form>
+
+      <div id="comments-list" class="comments-list">
+        <p class="no-comments">Loading comments...</p>
+      </div>
+    </div>
+
     <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
   </div>
 </main>
@@ -90,5 +114,6 @@
 </footer>
 
 <script src="app.js"></script>
+<script src="comments.js"></script>
 </body>
 </html>

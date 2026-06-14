@@ -6,6 +6,266 @@
   <title>Skills — Oliyad Beto</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* ══════════════════════════════════════
+       TECH STACK ORB GRID
+    ══════════════════════════════════════ */
+    .tech-stack-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2.4rem 2rem;
+      justify-content: center;
+      padding: 1rem 0 0.5rem;
+    }
+
+    .tech-orb {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1rem;
+      cursor: default;
+    }
+
+    .orb-circle {
+      width: 84px;
+      height: 84px;
+      border-radius: 50%;
+      background: radial-gradient(circle at 35% 30%,
+        rgba(255,255,255,0.06) 0%,
+        rgba(10,10,28,0.92) 60%,
+        rgba(6,6,18,0.98) 100%
+      );
+      border: 1.5px solid rgba(224,51,76,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      box-shadow:
+        0 0 18px rgba(224,51,76,0.12),
+        inset 0 -4px 14px rgba(0,0,0,0.4),
+        inset 0 4px 8px rgba(255,255,255,0.04);
+      animation: orb-float 3.5s ease-in-out infinite;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s;
+    }
+
+    /* Gloss highlight spot */
+    .orb-circle::before {
+      content: '';
+      position: absolute;
+      top: 14%; left: 20%;
+      width: 28%; height: 18%;
+      background: rgba(255,255,255,0.12);
+      border-radius: 50%;
+      filter: blur(3px);
+      pointer-events: none;
+    }
+
+    .orb-circle img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.5));
+      transition: transform 0.3s ease, filter 0.3s ease;
+    }
+
+    /* FA icon fallback for orbs */
+    .orb-circle .orb-fa {
+      font-size: 2.8rem;
+      position: relative;
+      z-index: 1;
+      transition: transform 0.3s ease;
+    }
+
+    .tech-orb:hover .orb-circle {
+      transform: translateY(-10px) scale(1.08);
+      border-color: rgba(224,51,76,0.6);
+      box-shadow:
+        0 0 32px rgba(224,51,76,0.35),
+        0 12px 30px rgba(0,0,0,0.5),
+        inset 0 -4px 14px rgba(0,0,0,0.3),
+        inset 0 4px 8px rgba(255,255,255,0.06);
+    }
+    .tech-orb:hover .orb-circle img {
+      transform: scale(1.12);
+      filter: drop-shadow(0 0 8px rgba(255,255,255,0.4));
+    }
+    .tech-orb:hover .orb-circle .orb-fa {
+      transform: scale(1.12);
+    }
+
+    .orb-label {
+      font-family: 'Courier New', monospace;
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      letter-spacing: 0.06em;
+      transition: color 0.25s;
+      text-align: center;
+    }
+    .tech-orb:hover .orb-label { color: var(--text); }
+
+    /* Staggered float delays */
+    .tech-orb:nth-child(1)  .orb-circle { animation-delay: 0s; }
+    .tech-orb:nth-child(2)  .orb-circle { animation-delay: -0.4s; }
+    .tech-orb:nth-child(3)  .orb-circle { animation-delay: -0.8s; }
+    .tech-orb:nth-child(4)  .orb-circle { animation-delay: -1.2s; }
+    .tech-orb:nth-child(5)  .orb-circle { animation-delay: -1.6s; }
+    .tech-orb:nth-child(6)  .orb-circle { animation-delay: -2.0s; }
+    .tech-orb:nth-child(7)  .orb-circle { animation-delay: -2.4s; }
+    .tech-orb:nth-child(8)  .orb-circle { animation-delay: -2.8s; }
+    .tech-orb:nth-child(9)  .orb-circle { animation-delay: -3.2s; }
+    .tech-orb:nth-child(10) .orb-circle { animation-delay: -0.6s; }
+    .tech-orb:nth-child(11) .orb-circle { animation-delay: -1.0s; }
+    .tech-orb:nth-child(12) .orb-circle { animation-delay: -1.8s; }
+
+    @keyframes orb-float {
+      0%, 100% { transform: translateY(0); }
+      50%       { transform: translateY(-9px); }
+    }
+
+    /* ── SKILLS LOWER GRID ── */
+    .skills-lower-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2.2rem;
+      margin-top: 2.4rem;
+    }
+
+    .skill-cat-title {
+      font-family: 'Courier New', monospace;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--accent);
+      letter-spacing: 0.08em;
+      margin-bottom: 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid rgba(224,51,76,0.18);
+    }
+
+    .skill-list { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .skill-list li {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      font-size: 1.4rem;
+      color: var(--text-muted);
+      padding: 0.65rem 1rem;
+      border-radius: 0.4rem;
+      border-bottom: 1px solid rgba(224,51,76,0.06);
+      transition: background 0.2s, color 0.2s, padding-left 0.2s;
+      cursor: default;
+      font-family: 'Courier New', monospace;
+    }
+    .skill-list li::before {
+      content: '>';
+      color: rgba(224,51,76,0.4);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+    .skill-list li:hover {
+      background: rgba(224,51,76,0.06);
+      color: var(--text);
+      border-bottom-color: rgba(224,51,76,0.2);
+      padding-left: 1.4rem;
+    }
+    .skill-list li i {
+      color: var(--accent);
+      font-size: 1.5rem;
+      width: 1.8rem;
+      text-align: center;
+      flex-shrink: 0;
+    }
+
+    /* ── PROFICIENCY BARS ── */
+    .bars-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 3.5rem;
+      margin-top: 2.4rem;
+    }
+
+    .skill-bar-wrap { margin-bottom: 1.6rem; }
+    .label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.35rem;
+      color: var(--text-muted);
+      margin-bottom: 0.5rem;
+      font-family: 'Courier New', monospace;
+    }
+    .label span:last-child { color: var(--accent); font-weight: 700; }
+
+    .bar-track {
+      width: 100%;
+      height: 8px;
+      background: rgba(255,255,255,0.04);
+      border-radius: 4px;
+      overflow: visible;
+      position: relative;
+    }
+    .bar-fill {
+      height: 100%;
+      border-radius: 4px;
+      background: linear-gradient(90deg, var(--accent), var(--accent2), var(--accent));
+      background-size: 200% 100%;
+      width: 0;
+      transition: width 1.4s cubic-bezier(.4,0,.2,1);
+      animation: bar-shimmer 2.5s linear infinite;
+      position: relative;
+      box-shadow: 0 0 12px rgba(224,51,76,0.5);
+    }
+    .bar-fill::after {
+      content: '';
+      position: absolute;
+      right: -1px; top: 50%;
+      transform: translateY(-50%);
+      width: 14px; height: 14px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 16px rgba(224,51,76,0.9), 0 0 4px white;
+      opacity: 0;
+      transition: opacity 0.3s 1.2s;
+    }
+    .bar-fill.animated::after { opacity: 1; }
+
+    @keyframes bar-shimmer {
+      0%   { background-position: 200% 0; }
+      100% { background-position: -200% 0; }
+    }
+
+    /* Light mode overrides */
+    body.light-mode .orb-circle {
+      background: radial-gradient(circle at 35% 30%,
+        rgba(255,255,255,0.8) 0%,
+        rgba(240,240,248,0.95) 60%,
+        rgba(230,230,242,1) 100%
+      );
+      border-color: rgba(224,51,76,0.2);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.1), inset 0 1px 4px rgba(255,255,255,0.8);
+    }
+    body.light-mode .tech-orb:hover .orb-circle {
+      border-color: rgba(224,51,76,0.5);
+      box-shadow: 0 0 24px rgba(224,51,76,0.2), 0 10px 24px rgba(0,0,0,0.12);
+    }
+    body.light-mode .orb-circle::before { background: rgba(255,255,255,0.6); }
+    body.light-mode .orb-label { color: #52526a; }
+    body.light-mode .tech-orb:hover .orb-label { color: #0c0c18; }
+    body.light-mode .skill-cat-title { color: var(--accent); }
+    body.light-mode .label span:last-child { color: var(--accent); }
+    body.light-mode .bar-track { background: rgba(0,0,0,0.07); }
+
+    @media (max-width: 900px) {
+      .tech-stack-grid { gap: 1.8rem 1.4rem; }
+      .orb-circle { width: 68px; height: 68px; }
+      .orb-circle img, .orb-circle .orb-fa { width: 32px; height: 32px; font-size: 2.2rem; }
+      .skills-lower-grid { grid-template-columns: 1fr; }
+      .bars-grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
 <body>
 
@@ -27,15 +287,111 @@
 
 <main>
   <div class="page-section">
+
     <div class="page-header">
       <span class="tag">What I know</span>
       <h1>My <span>Skills</span></h1>
       <p>A blend of technical expertise and soft skills developed through real-world projects and continuous learning.</p>
     </div>
 
-    <div class="skills-grid-2col">
-      <div class="card reveal" style="animation-delay:0.1s">
-        <h2><i class="fa-solid fa-laptop-code"></i> Technical Skills</h2>
+    <!-- ══ TECH STACK ORB GRID ══ -->
+    <div class="card reveal" style="animation-delay:0.1s">
+      <h2><i class="fa-solid fa-rocket"></i> Tech Stack</h2>
+      <br>
+      <div class="tech-stack-grid">
+
+        <div class="tech-orb">
+          <div class="orb-circle">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg" alt="HTML5">
+          </div>
+          <span class="orb-label">HTML5</span>
+        </div>
+
+        <div class="tech-orb">
+          <div class="orb-circle">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg" alt="CSS3">
+          </div>
+          <span class="orb-label">CSS3</span>
+        </div>
+
+        <div class="tech-orb">
+          <div class="orb-circle">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg" alt="JavaScript">
+          </div>
+          <span class="orb-label">JavaScript</span>
+        </div>
+
+        <div class="tech-orb">
+          <div class="orb-circle">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/csharp/csharp-original.svg" alt="C#">
+          </div>
+          <span class="orb-label">C#</span>
+        </div>
+
+        <div class="tech-orb">
+          <div class="orb-circle">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg" alt="Python">
+          </div>
+          <span class="orb-label">Python</span>
+        </div>
+
+        <div class="tech-orb">
+          <div class="orb-circle">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg" alt="Java">
+          </div>
+          <span class="orb-label">Java</span>
+        </div>
+
+        <div class="tech-orb">
+          <div class="orb-circle">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg" alt="React">
+          </div>
+          <span class="orb-label">React</span>
+        </div>
+
+        <div class="tech-orb">
+          <div class="orb-circle">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg" alt="Node.js">
+          </div>
+          <span class="orb-label">Node.js</span>
+        </div>
+
+        <div class="tech-orb">
+          <div class="orb-circle">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg" alt="Express" style="filter: invert(1) brightness(0.85);">
+          </div>
+          <span class="orb-label">Express</span>
+        </div>
+
+        <div class="tech-orb">
+          <div class="orb-circle">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mysql/mysql-original.svg" alt="MySQL">
+          </div>
+          <span class="orb-label">MySQL</span>
+        </div>
+
+        <div class="tech-orb">
+          <div class="orb-circle">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg" alt="MongoDB">
+          </div>
+          <span class="orb-label">MongoDB</span>
+        </div>
+
+        <div class="tech-orb">
+          <div class="orb-circle">
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg" alt="Git">
+          </div>
+          <span class="orb-label">Git</span>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ══ TECHNICAL + SOFT SKILLS ══ -->
+    <div class="skills-lower-grid">
+
+      <div class="card reveal" style="animation-delay:0.25s">
+        <h2 class="skill-cat-title"><i class="fa-solid fa-laptop-code"></i> Technical Skills</h2>
         <ul class="skill-list">
           <li><i class="fa-brands fa-html5"></i> HTML &amp; CSS</li>
           <li><i class="fa-brands fa-js"></i> JavaScript</li>
@@ -43,11 +399,14 @@
           <li><i class="fa-brands fa-python"></i> Python</li>
           <li><i class="fa-brands fa-java"></i> Java</li>
           <li><i class="fa-solid fa-database"></i> SQL / MySQL</li>
+          <li><i class="fa-brands fa-react"></i> React</li>
+          <li><i class="fa-brands fa-node-js"></i> Node.js / Express</li>
+          <li><i class="fa-solid fa-leaf"></i> MongoDB</li>
         </ul>
       </div>
 
-      <div class="card reveal" style="animation-delay:0.2s">
-        <h2><i class="fa-solid fa-brain"></i> Soft Skills</h2>
+      <div class="card reveal" style="animation-delay:0.35s">
+        <h2 class="skill-cat-title"><i class="fa-solid fa-brain"></i> Soft Skills</h2>
         <ul class="skill-list">
           <li><i class="fa-solid fa-comments"></i> Communication</li>
           <li><i class="fa-solid fa-people-group"></i> Teamwork</li>
@@ -55,40 +414,77 @@
           <li><i class="fa-solid fa-clock"></i> Time Management</li>
           <li><i class="fa-solid fa-rotate"></i> Adaptability</li>
           <li><i class="fa-solid fa-book-open"></i> Continuous Learning</li>
+          <li><i class="fa-solid fa-lightbulb"></i> Critical Thinking</li>
+          <li><i class="fa-solid fa-handshake"></i> Collaboration</li>
         </ul>
       </div>
+
     </div>
 
-    <div class="card reveal" style="animation-delay:0.3s">
+    <!-- ══ PROFICIENCY BARS ══ -->
+    <div class="card reveal" style="animation-delay:0.45s; margin-top:2.4rem;">
       <h2><i class="fa-solid fa-chart-bar"></i> Skill Proficiency</h2>
       <br>
-      <div class="skill-bar-wrap">
-        <div class="label"><span>HTML &amp; CSS</span><span>88%</span></div>
-        <div class="bar-track"><div class="bar-fill" data-width="88"></div></div>
-      </div>
-      <div class="skill-bar-wrap">
-        <div class="label"><span>JavaScript</span><span>80%</span></div>
-        <div class="bar-track"><div class="bar-fill" data-width="80"></div></div>
-      </div>
-      <div class="skill-bar-wrap">
-        <div class="label"><span>C#</span><span>83%</span></div>
-        <div class="bar-track"><div class="bar-fill" data-width="83"></div></div>
-      </div>
-      <div class="skill-bar-wrap">
-        <div class="label"><span>Python</span><span>70%</span></div>
-        <div class="bar-track"><div class="bar-fill" data-width="70"></div></div>
-      </div>
-      <div class="skill-bar-wrap">
-        <div class="label"><span>Java</span><span>60%</span></div>
-        <div class="bar-track"><div class="bar-fill" data-width="60"></div></div>
-      </div>
-      <div class="skill-bar-wrap">
-        <div class="label"><span>SQL / MySQL</span><span>75%</span></div>
-        <div class="bar-track"><div class="bar-fill" data-width="75"></div></div>
+      <div class="bars-grid">
+
+        <div>
+          <div class="skill-bar-wrap">
+            <div class="label"><span>HTML &amp; CSS</span><span>94%</span></div>
+            <div class="bar-track"><div class="bar-fill" data-width="94"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="label"><span>JavaScript</span><span>85%</span></div>
+            <div class="bar-track"><div class="bar-fill" data-width="85"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="label"><span>C#</span><span>88%</span></div>
+            <div class="bar-track"><div class="bar-fill" data-width="88"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="label"><span>Python</span><span>75%</span></div>
+            <div class="bar-track"><div class="bar-fill" data-width="75"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="label"><span>Java</span><span>70%</span></div>
+            <div class="bar-track"><div class="bar-fill" data-width="70"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="label"><span>SQL / MySQL</span><span>78%</span></div>
+            <div class="bar-track"><div class="bar-fill" data-width="78"></div></div>
+          </div>
+        </div>
+
+        <div>
+          <div class="skill-bar-wrap">
+            <div class="label"><span>React</span><span>72%</span></div>
+            <div class="bar-track"><div class="bar-fill" data-width="72"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="label"><span>Node.js</span><span>70%</span></div>
+            <div class="bar-track"><div class="bar-fill" data-width="70"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="label"><span>Express.js</span><span>68%</span></div>
+            <div class="bar-track"><div class="bar-fill" data-width="68"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="label"><span>MongoDB</span><span>65%</span></div>
+            <div class="bar-track"><div class="bar-fill" data-width="65"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="label"><span>REST APIs</span><span>80%</span></div>
+            <div class="bar-track"><div class="bar-fill" data-width="80"></div></div>
+          </div>
+          <div class="skill-bar-wrap">
+            <div class="label"><span>Git &amp; GitHub</span><span>82%</span></div>
+            <div class="bar-track"><div class="bar-fill" data-width="82"></div></div>
+          </div>
+        </div>
+
       </div>
     </div>
 
-    <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+    <a href="index.html" class="back-btn" style="margin-top:3rem"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
   </div>
 </main>
 
