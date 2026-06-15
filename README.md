@@ -62,7 +62,7 @@ const oliyad = {
 | **Benti Fluha Spa** | Next.js · TypeScript · Tailwind | Luxury spa & hotel website, full App Router | [Repo ↗](https://github.com/olibbeto) |
 | **Bank Management System** | C# · MySQL · .NET · OOP | Full banking system with accounts, transactions, reports | [Repo ↗](https://github.com/olibbeto) |
 | **E-Commerce Website** | React · Node · MongoDB | Full-stack store with cart, auth, and payment flow | [Repo ↗](https://github.com/olibbeto) |
-| **Snake Game** | Java · MySQL · JDBC · Swing/AWT  | Classic snake, built from scratch with no libraries | [Repo ↗](https://github.com/olibbeto) |
+| **Snake Game** | Java · MySQL · JDBC · Swing/AWT  | Classic snake, built from scratch uses CRUD operation and fully functional | [Repo ↗](https://github.com/olibbeto) |
 
 </div>
 
