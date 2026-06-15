@@ -122,6 +122,75 @@ if (cyberName) {
   scheduleGlitch();
 }
 
+// ── BIO BLOCK TERMINAL TYPER ──
+(function initBioTyper() {
+  const el = document.getElementById('bb-typing');
+  if (!el) return;
+  const words = ['whoami', 'cat bio.txt', 'ls skills/', 'nmap --open', 'ping target.com'];
+  let wi = 0, ci = 0, deleting = false;
+
+  function tick() {
+    const word = words[wi];
+    if (!deleting) {
+      ci++;
+      el.textContent = word.slice(0, ci);
+      if (ci === word.length) {
+        deleting = true;
+        setTimeout(tick, 1400);
+        return;
+      }
+      setTimeout(tick, 90);
+    } else {
+      ci--;
+      el.textContent = word.slice(0, ci);
+      if (ci === 0) {
+        deleting = false;
+        wi = (wi + 1) % words.length;
+        setTimeout(tick, 300);
+        return;
+      }
+      setTimeout(tick, 38);
+    }
+  }
+  setTimeout(tick, 900);
+})();
+
+// ── ABOUT PAGE STAT COUNTERS ──
+(function initStatCounters() {
+  const nums = document.querySelectorAll('.about-stat-num');
+  if (!nums.length) return;
+
+  function easeOut(t) { return 1 - Math.pow(1 - t, 3); }
+
+  function animateCounter(el) {
+    if (el.dataset.counted) return;
+    el.dataset.counted = '1';
+    const target = parseInt(el.dataset.target, 10);
+    const suffix = el.dataset.suffix || '';
+    const dur = 1600;
+    const start = performance.now();
+
+    function step(now) {
+      const t = Math.min((now - start) / dur, 1);
+      const val = Math.round(easeOut(t) * target);
+      el.textContent = val + suffix;
+      if (t < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.querySelectorAll('.about-stat-num').forEach(animateCounter);
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+
+  document.querySelectorAll('.about-stats').forEach(el => io.observe(el));
+})();
+
 // ── CYBERPUNK CODE-RAIN BACKGROUND (MOUSE INTERACTIVE) ──
 (function initCyberRain() {
   const canvas = document.getElementById('particles-canvas');

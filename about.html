@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>About — Oliyad Beto</title>
+  <title>About &mdash; Oliyad Beto</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
@@ -33,14 +33,67 @@
       <p>A passionate software engineering student with a deep love for technology, problem-solving, and cybersecurity.</p>
     </div>
 
+    <!-- STAT COUNTERS -->
+    <div class="about-stats reveal" style="animation-delay:0.05s">
+      <div class="about-stat">
+        <span class="about-stat-num" data-target="5" data-suffix="+">0</span>
+        <span class="about-stat-label">Projects</span>
+      </div>
+      <div class="about-stat">
+        <span class="about-stat-num" data-target="10" data-suffix="+">0</span>
+        <span class="about-stat-label">Technologies</span>
+      </div>
+      <div class="about-stat">
+        <span class="about-stat-num" data-target="90" data-suffix=" days">0</span>
+        <span class="about-stat-label">Cybersec Challenge</span>
+      </div>
+    </div>
+
     <div class="bio-edu-grid">
-      <div class="card reveal" style="animation-delay:0.1s">
-        <h2><i class="fa-solid fa-user"></i> Biography</h2>
-        <p>I'm <span class="highlight">Oliyad Beto</span>, an undergraduate student at <span class="highlight">HiLCoE School of Computer Science and Technology</span>, pursuing a degree in Software Engineering with a strong focus on Cybersecurity.</p>
-        <br>
-        <p>My passion lies in exploring how technology can be used to protect digital systems, data, and people in an increasingly connected world. I'm always eager to learn and deeply motivated by the goal of stopping cybercrime and building safer digital spaces.</p>
+
+      <!-- BIOGRAPHY TERMINAL CARD -->
+      <div class="card reveal" style="animation-delay:0.1s; padding:0; overflow:hidden;">
+        <!-- Terminal header bar -->
+        <div class="term-header">
+          <span class="term-dot term-dot-red"></span>
+          <span class="term-dot term-dot-yellow"></span>
+          <span class="term-dot term-dot-green"></span>
+          <span class="term-title">oliyad@blackhat:~$ cat bio.txt</span>
+        </div>
+
+        <div class="term-body">
+          <!-- Scan line -->
+          <div class="bb-scanline"></div>
+
+          <!-- Key-value pairs -->
+          <div class="term-kv-list">
+            <div class="term-kv"><span class="kv-key kv-accent">name</span><span class="kv-sep">:</span><span class="kv-val">Oliyad Beto</span></div>
+            <div class="term-kv"><span class="kv-key kv-accent">role</span><span class="kv-sep">:</span><span class="kv-val">Software Engineer + Cybersecurity Learner</span></div>
+            <div class="term-kv"><span class="kv-key">school</span><span class="kv-sep">:</span><span class="kv-val">HiLCoE School of CS &amp; Technology</span></div>
+            <div class="term-kv"><span class="kv-key">degree</span><span class="kv-sep">:</span><span class="kv-val">BSc Software Engineering</span></div>
+            <div class="term-kv"><span class="kv-key kv-accent">focus</span><span class="kv-sep">:</span><span class="kv-val">Cybersecurity, Full-Stack, 3D Web</span></div>
+            <div class="term-kv"><span class="kv-key">location</span><span class="kv-sep">:</span><span class="kv-val">Addis Ababa, Ethiopia</span></div>
+            <div class="term-kv">
+              <span class="kv-key">status</span><span class="kv-sep">:</span>
+              <span class="kv-val"><span class="kv-dot-green"></span> Open to work</span>
+            </div>
+          </div>
+
+          <!-- Scan line 2 -->
+          <div class="bb-scanline"></div>
+
+          <!-- Short bio -->
+          <p class="term-bio-p">I'm passionate about <span class="accent">protecting digital systems</span> and people in an increasingly connected world. Deeply motivated by the goal of <span class="accent">stopping cybercrime</span> and building safer digital spaces.</p>
+
+          <!-- Mission bar -->
+          <div class="term-mission">
+            <i class="fa-solid fa-crosshairs"></i>
+            <span>Mission: Build fast. Hack smart. <span class="accent">Secure everything.</span></span>
+          </div>
+        </div>
       </div>
 
+      <!-- EDUCATION CARD -->
       <div class="card reveal" style="animation-delay:0.2s">
         <h2><i class="fa-solid fa-graduation-cap"></i> Education</h2>
         <table>
@@ -51,7 +104,7 @@
             <tr>
               <td>BSc Software Engineering</td>
               <td>HiLCoE School of CS</td>
-              <td>2023 – Present</td>
+              <td>2023 &ndash; Present</td>
             </tr>
             <tr>
               <td>High School Diploma</td>
@@ -60,6 +113,40 @@
             </tr>
           </tbody>
         </table>
+
+        <!-- MyFirstHack Tracker -->
+        <div class="mfh-box">
+          <div class="mfh-header">
+            <span><i class="fa-solid fa-shield-halved"></i> MyFirstHack &mdash; 90-day log</span>
+            <span class="mfh-badge">&#9679; Active</span>
+          </div>
+          <div class="mfh-phases">
+            <div class="mfh-phase">
+              <span class="mfh-dot mfh-dot-green"></span>
+              <span class="mfh-phase-name">Linux &amp; Networking</span>
+              <span class="mfh-days">Days 001&ndash;010</span>
+              <span class="mfh-status mfh-done"><i class="fa-solid fa-check"></i></span>
+            </div>
+            <div class="mfh-phase">
+              <span class="mfh-dot mfh-dot-green"></span>
+              <span class="mfh-phase-name">Recon &amp; OSINT</span>
+              <span class="mfh-days">Days 011&ndash;020</span>
+              <span class="mfh-status mfh-done"><i class="fa-solid fa-check"></i></span>
+            </div>
+            <div class="mfh-phase">
+              <span class="mfh-dot mfh-dot-pulse"></span>
+              <span class="mfh-phase-name">Web Vulnerabilities</span>
+              <span class="mfh-days">Days 021&ndash;030</span>
+              <span class="mfh-status mfh-inprogress">In progress</span>
+            </div>
+            <div class="mfh-phase mfh-phase-dim">
+              <span class="mfh-dot mfh-dot-dim"></span>
+              <span class="mfh-phase-name">CTFs &amp; Pentesting</span>
+              <span class="mfh-days">Days 031&ndash;090</span>
+              <span class="mfh-status"><i class="fa-solid fa-lock"></i></span>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 
@@ -68,24 +155,20 @@
       <form action="#" method="post" class="contact-form">
         <label for="name"><i class="fa-solid fa-user"></i> Name</label>
         <input type="text" id="name" name="name" placeholder="Your name" required>
-
         <label for="email"><i class="fa-solid fa-envelope"></i> Email</label>
         <input type="email" id="email" name="email" placeholder="your@email.com" required>
-
         <label for="message"><i class="fa-solid fa-comment"></i> Message</label>
         <textarea id="message" name="message" placeholder="Your message here..." required></textarea>
-
         <button type="submit" class="btn btn-primary" style="border:none; cursor:pointer;">
           <i class="fa-solid fa-paper-plane"></i> Send Message
         </button>
       </form>
     </div>
 
-    <!-- ── LIVE COMMENTS SECTION ── -->
+    <!-- LIVE COMMENTS -->
     <div class="card reveal comments-section" style="animation-delay:0.4s; margin-top:3rem;">
       <h2><i class="fa-solid fa-comments"></i> Visitor Comments</h2>
-      <p class="card-sub">Leave a message — visible to everyone who visits!</p>
-
+      <p class="card-sub">Leave a message - visible to everyone who visits!</p>
       <form id="comment-form" class="comment-form" autocomplete="off">
         <div class="comment-inputs">
           <input type="text" id="c-name" maxlength="40" placeholder="Your name" required>
@@ -99,7 +182,6 @@
         </div>
         <div id="comment-status" class="comment-status" style="display:none;"></div>
       </form>
-
       <div id="comments-list" class="comments-list">
         <p class="no-comments">Loading comments...</p>
       </div>
