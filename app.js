@@ -360,20 +360,34 @@ function applyTilt(el) {
   shine.className = 'tilt-shine';
   el.appendChild(shine);
 
+  // Stronger tilt for project cards, subtler for others
+  const isProject = el.classList.contains('project-card');
+  const max = isProject ? 18 : 12;
+  const perspective = isProject ? 700 : 900;
+
   el.addEventListener('mousemove', e => {
-    const r   = el.getBoundingClientRect();
-    const dx  = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
-    const dy  = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
-    const max = 14;
-    el.style.transition = 'transform 0.1s ease, box-shadow 0.1s ease';
-    el.style.transform  = `perspective(900px) rotateX(${-dy*max}deg) rotateY(${dx*max}deg) scale3d(1.03,1.03,1.03)`;
-    el.style.boxShadow  = `${-dx*max*2}px ${-dy*max*2}px 50px rgba(224,51,76,0.2), 0 20px 60px rgba(0,0,0,0.4)`;
-    shine.style.background = `radial-gradient(circle at ${(dx+1)/2*100}% ${(dy+1)/2*100}%, rgba(255,255,255,0.1) 0%, transparent 65%)`;
+    const r  = el.getBoundingClientRect();
+    const dx = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
+    const dy = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
+    el.style.transition = 'transform 0.08s ease, box-shadow 0.08s ease';
+    el.style.transform  = `perspective(${perspective}px) rotateX(${-dy*max}deg) rotateY(${dx*max}deg) scale3d(1.04,1.04,1.04)`;
+    el.style.boxShadow  = `
+      ${-dx * 24}px ${-dy * 24}px 40px rgba(224,51,76,0.25),
+      ${dx * 8}px ${dy * 8}px 60px rgba(0,0,0,0.5),
+      0 0 0 1px rgba(224,51,76,0.3)
+    `;
+    shine.style.background = `radial-gradient(
+      circle at ${(dx+1)/2*100}% ${(dy+1)/2*100}%,
+      rgba(255,255,255,0.18) 0%,
+      rgba(255,255,255,0.04) 40%,
+      transparent 70%
+    )`;
     shine.style.opacity = '1';
   });
+
   el.addEventListener('mouseleave', () => {
-    el.style.transition = 'transform 0.6s cubic-bezier(.23,1,.32,1), box-shadow 0.6s ease';
-    el.style.transform  = 'perspective(900px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)';
+    el.style.transition = 'transform 0.7s cubic-bezier(.23,1,.32,1), box-shadow 0.7s ease';
+    el.style.transform  = `perspective(${perspective}px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)`;
     el.style.boxShadow  = '';
     shine.style.opacity = '0';
   });

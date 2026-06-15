@@ -561,9 +561,10 @@ section { position: relative; z-index: 2; }
 
 /* ── HOME TECH ICON GRID ── */
 .home-tech-grid {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.2rem 1rem;
+  display: grid;
+  grid-template-columns: repeat(6, auto);
+  justify-content: start;
+  gap: 1.4rem 1.8rem;
   margin: 2rem 0;
   opacity: 0;
   animation: fadeUp 0.6s 0.95s forwards;
@@ -722,7 +723,10 @@ body.light-mode .home-tech-item:hover span { color: #0c0c18; }
 .icons a:hover::before { opacity: 1; }
 .icons a i { position: relative; z-index: 1; }
 
+
+/* ── BTN GROUP ── */
 .btn-group {
+
   display: flex;
   gap: 1.2rem;
   flex-wrap: wrap;
@@ -1031,12 +1035,27 @@ tr:hover td { background: rgba(255,255,255,0.02); color: var(--text); }
   background: rgba(10,10,22,0.9);
   border: 1px solid rgba(224,51,76,0.15);
   border-radius: 1rem;
-  overflow: hidden;
+  /* overflow:hidden removed — it disables preserve-3d tilt in browsers */
+  /* clip-path keeps rounded corners without breaking 3D context */
+  clip-path: inset(0 round 1rem);
   transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s cubic-bezier(0.23,1,0.32,1);
   opacity: 0;
   animation: fadeUp 0.6s forwards;
   position: relative;
-  isolation: isolate;
+  z-index: 0;
+  transform-style: preserve-3d;
+  will-change: transform;
+}
+
+/* Tilt shine overlay (injected by JS) */
+.tilt-shine {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 10;
 }
 
 /* Top glow bar */
@@ -1791,18 +1810,106 @@ body.light-mode .back-btn:hover {
 }
 
 /* ── RESPONSIVE ── */
-@media (max-width: 900px) {
-  .home { flex-direction: column; gap: 4rem; text-align: center; padding-top: 12rem; }
-  .home-img img { width: 22rem; height: 22rem; }
-  .home-img-inner { transform: none !important; }
-  .home-img .ring2, .home-img .ring3 { display: none; }
-  .home-content h1 { font-size: 4rem; }
-  .info-grid { grid-template-columns: 1fr; }
-  .icons { justify-content: center; }
-  .btn-group { justify-content: center; }
-  .bio-edu-grid, .skills-grid-2col, .project-grid, .testimonials-grid { grid-template-columns: 1fr; }
-  nav a { font-size: 1.2rem; padding: 0.5rem 1rem; }
+/* ══════════════════════════════════════════════════════
+   📱 RESPONSIVE — LARGE TABLET / SMALL LAPTOP  ≤ 1200px
+══════════════════════════════════════════════════════ */
+@media (max-width: 1200px) {
+  .home { gap: 5rem; padding: 14rem 4rem 6rem; }
+  .home-img img { width: 28rem; height: 28rem; }
+  .cyber-name  { font-size: 5.5rem; }
+  .home-tech-grid { grid-template-columns: repeat(6, auto); gap: 1.2rem 1.4rem; }
+  .project-grid { grid-template-columns: repeat(2,1fr); gap: 2rem; }
+  .skills-top-grid { grid-template-columns: repeat(3,1fr); }
 }
+
+/* ══════════════════════════════════════════════════════
+   📱 RESPONSIVE — TABLET  ≤ 900px
+══════════════════════════════════════════════════════ */
+@media (max-width: 900px) {
+
+  /* ── NAV ── */
+  header { padding: 0 2rem; }
+  .logo  { font-size: 2rem; }
+  nav a  { font-size: 1.15rem; padding: 0.45rem 0.8rem; }
+
+  /* ── HOME ── */
+  .home {
+    flex-direction: column-reverse;
+    gap: 3rem;
+    text-align: center;
+    padding: 12rem 2.5rem 5rem;
+    align-items: center;
+  }
+  .home-img { margin: 0 auto; }
+  .home-img img  { width: 22rem; height: 22rem; }
+  .home-img-inner { transform: none !important; }
+  .home-img .ring2,
+  .home-img .ring3 { display: none; }
+
+  /* ── CYBER NAME ── */
+  .cyber-name { font-size: 4.8rem; }
+  .h1-greeting { font-size: 2rem; }
+
+  /* ── CONTENT TEXT ── */
+  .home-content p { font-size: 1.45rem; }
+  .eyebrow        { margin: 0 auto 1.2rem; }
+
+  /* ── INFO GRID ── */
+  .info-grid {
+    grid-template-columns: 1fr 1fr;
+    justify-items: center;
+    text-align: left;
+  }
+
+  /* ── TECH ICON GRID ── */
+  .home-tech-grid {
+    grid-template-columns: repeat(4, auto);
+    justify-content: center;
+    gap: 1.4rem 1.8rem;
+  }
+
+  /* ── ICONS + BUTTONS ── */
+  .icons     { justify-content: center; }
+  .btn-group { justify-content: center; }
+
+  /* ── GRIDS ── */
+  .bio-edu-grid,
+  .skills-lower-grid,
+  .skills-grid-2col,
+  .project-grid,
+  .testimonials-grid { grid-template-columns: 1fr; }
+
+  .skills-top-grid { grid-template-columns: 1fr 1fr; }
+  .bars-grid       { grid-template-columns: 1fr; }
+  .hcf-row         { grid-template-columns: 1fr; }
+
+  /* ── TECH STACK ORB (skills page) ── */
+  .tech-stack-grid { gap: 1.6rem 1.2rem; }
+  .orb-circle { width: 72px; height: 72px; }
+  .orb-circle img { width: 34px; height: 34px; }
+  .orb-label { font-size: 1.1rem; }
+
+  /* ── DISABLE 3D TILT ON TOUCH ── */
+  .card, .project-card, blockquote {
+    transform: none !important;
+    box-shadow: none !important;
+  }
+  .tilt-shine,
+  .cursor-dot,
+  .cursor-ring { display: none !important; }
+
+  /* ── HUD ELEMENTS ── */
+  .hud-badge, .hud-corner { display: none; }
+  .home-img, .home-content { transform: none !important; }
+
+  /* ── PAGE SECTIONS ── */
+  .page-section { padding: 10rem 2rem 4rem; }
+  .page-header h1 { font-size: 3.6rem; }
+
+  /* ── CARDS ── */
+  .card { padding: 2rem; }
+}
+
 
 /* ══════════════════════════════════════════════
    🔥 ULTRA 3D INTERACTIVE UPGRADE
@@ -2009,16 +2116,114 @@ nav a { overflow: hidden; }
 
 
 /* ── MOBILE ── */
-@media (max-width: 900px) {
-  .card, .project-card, blockquote {
-    transform: none !important;
-    box-shadow: none !important;
+/* ══════════════════════════════════════════════════════
+   📱 RESPONSIVE — LARGE PHONE  ≤ 600px
+══════════════════════════════════════════════════════ */
+@media (max-width: 600px) {
+
+  /* ── NAV: shrink to fit ── */
+  nav { gap: 0.3rem; }
+  nav a { font-size: 1rem; padding: 0.4rem 0.6rem; }
+  .logo { font-size: 1.7rem; }
+
+  /* ── HOME ── */
+  .home { padding: 11rem 1.5rem 4rem; gap: 2.4rem; }
+  .home-img img  { width: 18rem; height: 18rem; }
+  .cyber-name    { font-size: 3.8rem; }
+  .h1-greeting   { font-size: 1.7rem; }
+  .home-content p { font-size: 1.35rem; }
+
+  /* ── INFO GRID: stack ── */
+  .info-grid { grid-template-columns: 1fr; }
+  .info-item { justify-content: center; }
+
+  /* ── TECH GRID: 3 per row ── */
+  .home-tech-grid {
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+    gap: 1.2rem 1.5rem;
   }
-  .tilt-shine, .cursor-dot, .cursor-ring { display: none !important; }
-  .home-img, .home-content { transform: none !important; }
-  .orb { width: 64px; height: 64px; font-size: 2.2rem; }
-  .cyber-name { font-size: 6rem; }
-  .hud-badge, .hud-corner { display: none; }
+  .home-tech-orb { width: 46px; height: 46px; }
+  .home-tech-orb img { width: 22px; height: 22px; }
+  .home-tech-item span { font-size: 0.95rem; }
+
+  /* ── BUTTONS: full width ── */
+  .btn-group { flex-direction: column; }
+  .btn-group .btn { width: 100%; text-align: center; justify-content: center; }
+
+  /* ── SKILLS PAGE ORBS: 3 per row ── */
+  .tech-stack-grid {
+    display: grid;
+    grid-template-columns: repeat(3, auto);
+    justify-content: center;
+    gap: 1.4rem 1rem;
+  }
+  .orb-circle { width: 64px; height: 64px; }
+  .orb-circle img { width: 30px; height: 30px; }
+  .skills-top-grid { grid-template-columns: 1fr; }
+
+  /* ── CARDS ── */
+  .card { padding: 1.6rem; }
+  .card h2 { font-size: 1.6rem; }
+
+  /* ── PROJECT CARDS ── */
+  .project-card img { height: 170px; }
+  .project-card .body { padding: 1.6rem 1.6rem 2rem; }
+  .project-card h2 { font-size: 1.7rem; }
+
+  /* ── PAGE HEADER ── */
+  .page-section { padding: 10rem 1.5rem 3rem; }
+  .page-header h1 { font-size: 3rem; }
+  .page-header p  { font-size: 1.4rem; }
+
+  /* ── EXPERIENCE TIMELINE ── */
+  .timeline { padding-left: 2rem; }
+
+  /* ── PROFICIENCY BARS ── */
+  .bars-grid { grid-template-columns: 1fr; }
+  .label { font-size: 1.25rem; }
+}
+
+/* ══════════════════════════════════════════════════════
+   📱 RESPONSIVE — SMALL PHONE  ≤ 400px
+══════════════════════════════════════════════════════ */
+@media (max-width: 400px) {
+
+  /* ── NAV: very compact ── */
+  nav a { font-size: 0.9rem; padding: 0.35rem 0.45rem; }
+  .logo { font-size: 1.5rem; }
+  .toggle-mode-btn { width: 3rem; height: 3rem; font-size: 1.3rem; }
+
+  /* ── HOME ── */
+  .home { padding: 10rem 1rem 3rem; }
+  .home-img img  { width: 15rem; height: 15rem; }
+  .cyber-name    { font-size: 3rem; }
+  .h1-greeting   { font-size: 1.5rem; }
+  .home-content p { font-size: 1.3rem; }
+  .text { font-size: 1.3rem; }
+
+  /* ── TECH GRID: 3 per row, tighter ── */
+  .home-tech-grid { gap: 1rem 1.2rem; }
+  .home-tech-orb  { width: 40px; height: 40px; }
+  .home-tech-orb img { width: 20px; height: 20px; }
+  .home-tech-item span { font-size: 0.88rem; }
+
+  /* ── SKILLS ORBS: 3 per row ── */
+  .orb-circle { width: 56px; height: 56px; }
+  .orb-circle img { width: 26px; height: 26px; }
+  .orb-label  { font-size: 1rem; }
+
+  /* ── PROJECT CARDS ── */
+  .project-card img   { height: 150px; }
+  .project-card h2    { font-size: 1.55rem; }
+  .project-card p     { font-size: 1.3rem; }
+  .tag-chip           { font-size: 1.05rem; padding: 0.3rem 0.7rem; }
+
+  /* ── PAGE HEADER ── */
+  .page-header h1 { font-size: 2.6rem; }
+
+  /* ── BACK BTN ── */
+  .back-btn { font-size: 1.2rem; padding: 0.9rem 1.6rem; }
 }
 
 /* ══════════════════════════════════════════
