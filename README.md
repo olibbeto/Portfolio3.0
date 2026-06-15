@@ -23,7 +23,6 @@ const oliyad = {
   name:     "Oliyad Beto",
   role:     "Software Engineer",
   school:   "HiLCoE, Addis Ababa 🇪🇹",
-  gpa:      "3.0 / 4.0",
   focus:    ["Full-Stack Dev", "3D Web", "Cybersecurity"],
   building: "Websites that look like they're from 2027",
   motto:    "If it doesn't feel impossible, think bigger."
