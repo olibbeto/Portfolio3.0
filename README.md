@@ -60,9 +60,9 @@ const oliyad = {
 |---------|-------|-------------|------|
 | **Portfolio 3.0** | HTML · CSS · JS · Three.js | 3D interactive portfolio with mouse-reactive scene | [Live ↗](https://olibbeto.github.io/Portfolio3.0/) |
 | **Benti Fluha Spa** | Next.js · TypeScript · Tailwind | Luxury spa & hotel website, full App Router | [Repo ↗](https://github.com/olibbeto) |
-| **Bank Management System** | Java · MySQL | Full banking system with accounts, transactions, reports | [Repo ↗](https://github.com/olibbeto) |
+| **Bank Management System** | C# · MySQL · .NET · OOP | Full banking system with accounts, transactions, reports | [Repo ↗](https://github.com/olibbeto) |
 | **E-Commerce Website** | React · Node · MongoDB | Full-stack store with cart, auth, and payment flow | [Repo ↗](https://github.com/olibbeto) |
-| **Snake Game** | JavaScript · Canvas | Classic snake, built from scratch with no libraries | [Repo ↗](https://github.com/olibbeto) |
+| **Snake Game** | Java · MySQL · JDBC · Swing/AWT  | Classic snake, built from scratch with no libraries | [Repo ↗](https://github.com/olibbeto) |
 
 </div>
 
