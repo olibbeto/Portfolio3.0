@@ -76,7 +76,12 @@ header.scrolled {
   cursor: pointer;
   transition: opacity 0.2s;
 }
-.logo:hover { opacity: 0.85; }
+.logo:hover {
+  opacity: 1;
+}
+
+
+
 
 nav {
   display: flex;
@@ -151,14 +156,41 @@ nav a.active::after {
   margin-left: 0.8rem;
   transition: all 0.25s;
 }
+
 .toggle-mode-btn:hover {
   border-color: var(--accent);
   color: var(--accent);
   transform: rotate(20deg);
 }
 
+/* ── NAV RESUME DOWNLOAD ── */
+.resume-download-btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 3.4rem;
+  height: 3.4rem;
+  background: var(--card);
+  color: var(--text-muted);
+  border: 1px solid var(--border);
+  border-radius: 50%;
+  font-size: 1.4rem;
+  cursor: pointer;
+  margin-left: 0.8rem;
+  transition: all 0.25s;
+  text-decoration: none;
+}
+
+.resume-download-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+  transform: translateY(-2px);
+  box-shadow: 0 0 22px rgba(224,51,76,0.18);
+}
+
 /* ── SECTIONS ── */
 section { position: relative; z-index: 2; }
+
 
 /* ── HOME ── */
 .home {
@@ -176,6 +208,7 @@ section { position: relative; z-index: 2; }
   position: relative;
   perspective: 800px;
   cursor: pointer;
+  margin-top: 5rem; /* space above for the eyebrow label */
 }
 
 /* Outer spinning conic ring */
@@ -362,6 +395,47 @@ section { position: relative; z-index: 2; }
 @keyframes status-pulse {
   0%,100% { opacity: 1; transform: scale(1); }
   50%      { opacity: 0.5; transform: scale(0.75); }
+}
+
+/* ── PROFILE EYEBROW — sits above IDENTITY_CONFIRMED badge ── */
+.profile-eyebrow {
+  position: absolute;
+  top: -7.4rem;          /* above hud-badge-top which is at -3.6rem */
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  z-index: 20;
+  margin: 0;
+  display: inline-flex !important;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 0.95rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  font-family: 'Courier New', monospace;
+  font-weight: 600;
+  background: rgba(8,8,20,0.85);
+  border: 1px solid rgba(224,51,76,0.28);
+  border-radius: 0.3rem;
+  padding: 0.35rem 1rem;
+  backdrop-filter: blur(6px);
+  opacity: 0;
+  animation: eyebrow-appear 0.5s 0.1s forwards;
+}
+@keyframes eyebrow-appear {
+  from { opacity: 0; transform: translateX(-50%) translateY(6px); }
+  to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+.profile-eyebrow::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #39ff6a;
+  box-shadow: 0 0 8px #39ff6a, 0 0 16px rgba(57,255,106,0.4);
+  animation: status-pulse 1.4s ease-in-out infinite;
+  flex-shrink: 0;
 }
 
 .home-content h1 {
@@ -1035,9 +1109,7 @@ tr:hover td { background: rgba(255,255,255,0.02); color: var(--text); }
   background: rgba(10,10,22,0.9);
   border: 1px solid rgba(224,51,76,0.15);
   border-radius: 1rem;
-  /* overflow:hidden removed — it disables preserve-3d tilt in browsers */
-  /* clip-path keeps rounded corners without breaking 3D context */
-  clip-path: inset(0 round 1rem);
+  overflow: hidden;
   transition: border-color 0.35s, box-shadow 0.35s, transform 0.35s cubic-bezier(0.23,1,0.32,1);
   opacity: 0;
   animation: fadeUp 0.6s forwards;
@@ -1083,12 +1155,7 @@ tr:hover td { background: rgba(255,255,255,0.02); color: var(--text); }
 }
 
 .project-card:hover {
-  transform: translateY(-7px);
   border-color: rgba(224,51,76,0.5);
-  box-shadow:
-    0 0 0 1px rgba(224,51,76,0.12),
-    0 0 40px rgba(224,51,76,0.15),
-    0 20px 60px rgba(0,0,0,0.45);
 }
 .project-card:hover::before { opacity: 1; }
 .project-card:hover::after  { opacity: 1; }
@@ -1547,6 +1614,19 @@ body.light-mode .comment-text { color: #55556a; }
   transform: none;
 }
 
+/* JS pre-reveal: hides element before it enters viewport */
+.pre-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.7s cubic-bezier(0.23,1,0.32,1), transform 0.7s cubic-bezier(0.23,1,0.32,1);
+}
+/* in-view triggers the reveal transition */
+.pre-reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+/* After reveal: remove pre-reveal class via JS so tilt owns the transform */
+
 /* ══════════════════════════════════════════════
    ☀️  LIGHT MODE
 ══════════════════════════════════════════════ */
@@ -1806,8 +1886,6 @@ body.light-mode .back-btn:hover {
   background: rgba(224,51,76,0.04);
 }
 
-  box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-}
 
 /* ── RESPONSIVE ── */
 /* ══════════════════════════════════════════════════════
@@ -2041,11 +2119,46 @@ nav a { overflow: hidden; }
 .logo {
   transition: transform 0.3s ease, opacity 0.2s;
   display: inline-block;
+  position: relative;
+  will-change: transform, filter;
+  /* cyberpunk glow */
+  filter: drop-shadow(0 0 6px rgba(224,51,76,0.35)) drop-shadow(0 0 18px rgba(255,107,53,0.18));
 }
+
+.logo::after {
+  content: '';
+  position: absolute;
+  inset: -6px -10px;
+  background: conic-gradient(from 180deg, rgba(224,51,76,0.0), rgba(224,51,76,0.35), rgba(0,210,255,0.25), rgba(255,107,53,0.35), rgba(224,51,76,0.0));
+  opacity: 0;
+  filter: blur(6px);
+  z-index: -1;
+  animation: none;
+  transition: opacity 0.25s ease;
+}
+
 .logo:hover {
-  transform: perspective(300px) rotateY(-8deg) scale(1.05);
   opacity: 1 !important;
+  animation: none;
 }
+
+.logo:hover::after {
+  opacity: 0;
+  animation: none;
+}
+
+
+@keyframes logo-flicker {
+  0%, 100% { filter: drop-shadow(0 0 6px rgba(224,51,76,0.35)) drop-shadow(0 0 18px rgba(255,107,53,0.18)); }
+  50% { filter: drop-shadow(0 0 10px rgba(0,210,255,0.22)) drop-shadow(0 0 28px rgba(224,51,76,0.28)); }
+}
+
+@keyframes logo-sweep {
+  0%   { transform: translateX(-6px) rotate(0deg); }
+  50%  { transform: translateX(6px) rotate(10deg); }
+  100% { transform: translateX(-6px) rotate(0deg); }
+}
+
 
 /* ── PROFILE PHOTO 3D TILT (mouse tracking via JS) ── */
 .home-img img {

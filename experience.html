@@ -4,8 +4,380 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Experience — Oliyad Beto</title>
+  <meta name="description" content="Oliyad Beto's professional journey — cybersecurity, freelancing, full-stack development and software engineering studies.">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="stylesheet" href="style.css">
+  <style>
+    /* ══════════════════════════════════════════
+       TIMELINE PAGE — CYBER EDITION
+    ══════════════════════════════════════════ */
+
+    .exp-hero {
+      text-align: center;
+      padding: 6rem 2rem 3rem;
+      position: relative;
+    }
+    .exp-hero .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--accent);
+      background: rgba(224,51,76,0.08);
+      border: 1px solid rgba(224,51,76,0.25);
+      padding: 0.5rem 1.4rem;
+      border-radius: 3rem;
+      margin-bottom: 1.6rem;
+    }
+    .exp-hero h1 {
+      font-size: clamp(3rem, 6vw, 5.2rem);
+      font-weight: 900;
+      line-height: 1.05;
+      margin-bottom: 1.2rem;
+    }
+    .exp-hero h1 span {
+      background: var(--grad);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .exp-hero p {
+      font-size: 1.6rem;
+      color: var(--text-muted);
+      max-width: 56ch;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ── TIMELINE WRAPPER ── */
+    .cyber-timeline {
+      position: relative;
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 2rem 2rem 6rem;
+    }
+
+    /* The vertical glowing line */
+    .cyber-timeline::before {
+      content: '';
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 2px;
+      transform: translateX(-50%);
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(224,51,76,0.6) 8%,
+        rgba(224,51,76,0.8) 30%,
+        rgba(255,107,53,0.8) 50%,
+        rgba(224,51,76,0.8) 70%,
+        rgba(224,51,76,0.6) 92%,
+        transparent 100%
+      );
+      filter: drop-shadow(0 0 6px rgba(224,51,76,0.5));
+      animation: line-pulse 3s ease-in-out infinite alternate;
+    }
+    @keyframes line-pulse {
+      from { opacity: 0.7; }
+      to   { opacity: 1; filter: drop-shadow(0 0 12px rgba(224,51,76,0.8)); }
+    }
+
+    /* ── TIMELINE ITEM ── */
+    .tl-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 0;
+      margin-bottom: 5rem;
+      position: relative;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .tl-item.in-view {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Alternate left/right layout */
+    .tl-item:nth-child(odd)  { flex-direction: row; }
+    .tl-item:nth-child(even) { flex-direction: row-reverse; }
+
+    /* ── CARD ── */
+    .tl-card {
+      width: calc(50% - 3.5rem);
+      background: rgba(10,10,22,0.88);
+      border: 1px solid rgba(224,51,76,0.18);
+      border-radius: 1.2rem;
+      padding: 2.4rem 2.6rem 2.6rem;
+      position: relative;
+      backdrop-filter: blur(10px);
+      transition: border-color 0.3s, box-shadow 0.3s, transform 0.3s;
+      /* overflow:hidden removed — it disables 3D perspective tilt in browsers */
+      cursor: default;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    /* Hover glow */
+    .tl-card:hover {
+      border-color: rgba(224,51,76,0.5);
+      box-shadow:
+        0 0 0 1px rgba(224,51,76,0.12),
+        0 0 50px rgba(224,51,76,0.18),
+        0 24px 60px rgba(0,0,0,0.5);
+    }
+
+    /* Top accent bar */
+    .tl-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--accent), var(--accent2), transparent);
+      opacity: 0;
+      transition: opacity 0.35s;
+    }
+    .tl-card:hover::before { opacity: 1; }
+
+    /* Scan line sweep on hover */
+    .tl-card::after {
+      content: '';
+      position: absolute;
+      top: -100%;
+      left: 0; right: 0;
+      height: 60%;
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(224,51,76,0.04) 40%,
+        rgba(224,51,76,0.08) 50%,
+        rgba(224,51,76,0.04) 60%,
+        transparent
+      );
+      pointer-events: none;
+      transition: top 0.6s ease;
+    }
+    .tl-card:hover::after { top: 100%; }
+
+    /* Card arrow pointing toward center line */
+    .tl-item:nth-child(odd)  .tl-card::before,
+    .tl-item:nth-child(even) .tl-card::before { content: ''; }
+
+    .tl-arrow {
+      position: absolute;
+      top: 2.6rem;
+      width: 0; height: 0;
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+    }
+    .tl-item:nth-child(odd)  .tl-arrow {
+      right: -10px;
+      border-left: 10px solid rgba(224,51,76,0.3);
+    }
+    .tl-item:nth-child(even) .tl-arrow {
+      left: -10px;
+      border-right: 10px solid rgba(224,51,76,0.3);
+    }
+
+    /* ── CENTER DOT ── */
+    .tl-dot-wrap {
+      position: absolute;
+      left: 50%;
+      top: 2.2rem;
+      transform: translateX(-50%);
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .tl-dot {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: var(--accent);
+      border: 3px solid var(--bg);
+      box-shadow:
+        0 0 0 3px rgba(224,51,76,0.4),
+        0 0 20px rgba(224,51,76,0.7),
+        0 0 40px rgba(224,51,76,0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+      animation: dot-breathe 2.5s ease-in-out infinite;
+    }
+    .tl-item:hover .tl-dot {
+      transform: scale(1.5);
+      box-shadow:
+        0 0 0 4px rgba(224,51,76,0.5),
+        0 0 30px rgba(224,51,76,1),
+        0 0 60px rgba(224,51,76,0.5);
+    }
+    @keyframes dot-breathe {
+      0%, 100% { box-shadow: 0 0 0 3px rgba(224,51,76,0.4), 0 0 20px rgba(224,51,76,0.7), 0 0 40px rgba(224,51,76,0.3); }
+      50%       { box-shadow: 0 0 0 5px rgba(224,51,76,0.2), 0 0 30px rgba(255,107,53,0.9), 0 0 60px rgba(224,51,76,0.4); }
+    }
+
+    /* ── CARD CONTENT ── */
+    .tl-date {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: 1.1rem;
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      background: rgba(224,51,76,0.1);
+      border: 1px solid rgba(224,51,76,0.2);
+      padding: 0.3rem 1rem;
+      border-radius: 2rem;
+      margin-bottom: 1.2rem;
+    }
+    .tl-date i { font-size: 1rem; }
+
+    .tl-role {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: var(--text);
+      line-height: 1.2;
+      margin-bottom: 0.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    .tl-company {
+      font-size: 1.2rem;
+      color: var(--accent2);
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin-bottom: 1.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .tl-company::before {
+      content: '';
+      display: inline-block;
+      width: 16px;
+      height: 2px;
+      background: var(--accent2);
+      border-radius: 1px;
+      flex-shrink: 0;
+    }
+
+    .tl-desc {
+      font-size: 1.4rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+    }
+
+    /* ── SKILL CHIPS ── */
+    .tl-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1.6rem;
+    }
+    .tl-tag {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--accent);
+      background: rgba(224,51,76,0.1);
+      border: 1px solid rgba(224,51,76,0.2);
+      padding: 0.25rem 0.9rem;
+      border-radius: 2rem;
+      font-family: 'Courier New', monospace;
+      letter-spacing: 0.04em;
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .tl-tag:hover {
+      background: rgba(224,51,76,0.2);
+      border-color: rgba(224,51,76,0.5);
+    }
+
+    /* ── ICON BADGE ── */
+    .tl-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1.2rem;
+      width: 4.8rem;
+      height: 4.8rem;
+      border-radius: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(224,51,76,0.12);
+      border: 1px solid rgba(224,51,76,0.2);
+      color: var(--accent);
+    }
+
+    /* ── STATUS BADGE (current) ── */
+    .tl-status {
+      position: absolute;
+      top: 1.6rem;
+      right: 1.6rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 1rem;
+      font-weight: 700;
+      color: #3ddc84;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .tl-status-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #3ddc84;
+      animation: blink 1.2s ease-in-out infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50%       { opacity: 0.2; }
+    }
+
+    /* ── YEAR MARKER (optional) ── */
+    .tl-year-marker {
+      text-align: center;
+      margin-bottom: 3rem;
+      position: relative;
+      z-index: 5;
+    }
+    .tl-year-marker span {
+      display: inline-block;
+      font-family: 'Courier New', monospace;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      color: rgba(224,51,76,0.7);
+      background: var(--bg);
+      padding: 0.3rem 1.2rem;
+      border: 1px solid rgba(224,51,76,0.15);
+      border-radius: 2rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    /* ── BACK BTN ── */
+    .exp-back {
+      display: flex;
+      justify-content: center;
+      padding-bottom: 4rem;
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      .cyber-timeline::before { left: 2rem; }
+      .tl-item,
+      .tl-item:nth-child(even) { flex-direction: column !important; padding-left: 5rem; }
+      .tl-card { width: 100%; }
+      .tl-dot-wrap { left: 2rem; top: 1.8rem; transform: none; }
+      .tl-item:nth-child(odd)  .tl-arrow,
+      .tl-item:nth-child(even) .tl-arrow { left: -10px; right: auto; border-right: 10px solid rgba(224,51,76,0.3); border-left: none; }
+    }
+  </style>
 </head>
 <body>
 
@@ -26,65 +398,109 @@
 </header>
 
 <main>
-  <div class="page-section">
-    <div class="page-header">
-      <span class="tag">My journey</span>
-      <h1>Work <span>Experience</span></h1>
-      <p>My professional journey — from internships to engineering roles — shaping my skills and perspective.</p>
-    </div>
 
-    <div class="card reveal" style="animation-delay:0.1s; margin-bottom: 3rem;">
-      <h2><i class="fa-solid fa-briefcase"></i> Career Timeline</h2>
-      <br>
-      <div class="timeline">
+  <!-- ── HERO ── -->
+  <section class="exp-hero">
+    <span class="tag"><i class="fa-solid fa-terminal"></i> MY JOURNEY</span>
+    <h1>The <span>Timeline</span></h1>
+    <p>Every commit, every project, every late night — mapped out from where it started to where it's going.</p>
+  </section>
 
-        <div class="timeline-item reveal" style="animation-delay:0.15s">
-          <div class="period">Jan 2025 – Present</div>
-          <h3>Software Engineer</h3>
-          <div class="company">Company A</div>
-          <p>Working on software development projects, contributing to backend systems and application architecture.</p>
+  <!-- ══ CYBER TIMELINE ══ -->
+  <div class="cyber-timeline" id="cyber-timeline">
+
+    <!-- ─── ITEM 1 — Cybersecurity ─── -->
+    <div class="tl-item" id="tl-1" style="transition-delay: 0.05s">
+      <div class="tl-card">
+        <div class="tl-status"><span class="tl-status-dot"></span>ACTIVE</div>
+        <div class="tl-arrow"></div>
+        <div class="tl-icon"><i class="fa-solid fa-shield-halved"></i></div>
+        <div class="tl-date"><i class="fa-regular fa-calendar"></i> 2026 — Present</div>
+        <div class="tl-role">Cybersecurity Self-Study<br>— MyFirstHack</div>
+        <div class="tl-company">Independent / Public Learning Log</div>
+        <div class="tl-desc">Started a self-directed 90-day cybersecurity learning program called <strong style="color:var(--accent)">MyFirstHack</strong>, documented publicly to build accountability and track progress. Covering networking fundamentals, Linux command line, OWASP Top 10 vulnerabilities, and hands-on practice with tools like <strong style="color:var(--text)">Burp Suite</strong> and <strong style="color:var(--text)">Nmap</strong> through platforms like TryHackMe. Treating it as a parallel discipline to software engineering — understanding how systems break makes me better at building ones that don't.</div>
+        <div class="tl-tags">
+          <span class="tl-tag">Burp Suite</span>
+          <span class="tl-tag">Nmap</span>
+          <span class="tl-tag">OWASP Top 10</span>
+          <span class="tl-tag">TryHackMe</span>
+          <span class="tl-tag">Linux</span>
+          <span class="tl-tag">Networking</span>
         </div>
-
-        <div class="timeline-item reveal" style="animation-delay:0.25s">
-          <div class="period">Jun 2024 – Dec 2024</div>
-          <h3>Web Developer</h3>
-          <div class="company">Company B</div>
-          <p>Built and maintained web applications, focused on frontend development with HTML, CSS, and JavaScript.</p>
-        </div>
-
-        <div class="timeline-item reveal" style="animation-delay:0.35s">
-          <div class="period">Jan 2024 – May 2024</div>
-          <h3>Intern</h3>
-          <div class="company">Company C</div>
-          <p>Gained hands-on experience in software development workflows, code reviews, and collaborative team projects.</p>
-        </div>
-
-        <div class="timeline-item reveal" style="animation-delay:0.45s">
-          <div class="period">Jan 2022 – Dec 2022</div>
-          <h3>Junior Developer</h3>
-          <div class="company">Company D</div>
-          <p>Started professional journey building small-scale applications and learning industry best practices.</p>
-        </div>
-
       </div>
+      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
     </div>
 
-    <div class="card reveal" style="animation-delay:0.5s">
-      <h2><i class="fa-solid fa-comments"></i> Testimonials</h2>
-      <div class="testimonials-grid" style="margin-top:2rem">
-        <blockquote>
-          <p>"Oliyad is a dedicated professional with exceptional skills and a great attitude toward learning."</p>
-          <footer>— Client A</footer>
-        </blockquote>
-        <blockquote>
-          <p>"A pleasure to work with — always delivers on time and goes above and beyond what's expected."</p>
-          <footer>— Client B</footer>
-        </blockquote>
+    <!-- ─── ITEM 2 — Freelance ─── -->
+    <div class="tl-item" id="tl-2" style="transition-delay: 0.15s">
+      <div class="tl-card">
+        <div class="tl-arrow"></div>
+        <div class="tl-icon"><i class="fa-solid fa-laptop-code"></i></div>
+        <div class="tl-date"><i class="fa-regular fa-calendar"></i> 2025</div>
+        <div class="tl-role">Freelance Web Developer</div>
+        <div class="tl-company">Self-Employed, Remote</div>
+        <div class="tl-desc">Built and delivered client-facing web projects including the <strong style="color:var(--accent)">Benti Fluha</strong> spa &amp; hotel website — a fully responsive, production-deployed site. Iterated from static HTML/CSS to a full <strong style="color:var(--text)">Next.js App Router</strong> architecture with TypeScript components, delivering premium UI and performance on real deadlines for real clients.</div>
+        <div class="tl-tags">
+          <span class="tl-tag">Next.js</span>
+          <span class="tl-tag">TypeScript</span>
+          <span class="tl-tag">HTML/CSS</span>
+          <span class="tl-tag">JavaScript</span>
+          <span class="tl-tag">Responsive</span>
+        </div>
       </div>
+      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
     </div>
 
+    <!-- ─── ITEM 3 — Full-Stack ─── -->
+    <div class="tl-item" id="tl-3" style="transition-delay: 0.25s">
+      <div class="tl-card">
+        <div class="tl-arrow"></div>
+        <div class="tl-icon"><i class="fa-solid fa-code"></i></div>
+        <div class="tl-date"><i class="fa-regular fa-calendar"></i> 2024</div>
+        <div class="tl-role">Self-Taught Full-Stack Developer</div>
+        <div class="tl-company">Personal Projects</div>
+        <div class="tl-desc">Built a bank management system, e-commerce platforms, portfolio site, and a collection of algorithm implementations across <strong style="color:var(--text)">C++</strong>, <strong style="color:var(--text)">Java</strong>, and <strong style="color:var(--text)">Python</strong>. Each project was a deliberate challenge to go beyond tutorials and ship something complete — with real data persistence, authentication flows, and user interfaces that actually work.</div>
+        <div class="tl-tags">
+          <span class="tl-tag">C#</span>
+          <span class="tl-tag">Java</span>
+          <span class="tl-tag">Python</span>
+          <span class="tl-tag">MySQL</span>
+          <span class="tl-tag">Node.js</span>
+          <span class="tl-tag">React</span>
+        </div>
+      </div>
+      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+    </div>
+
+    <!-- ─── ITEM 4 — University ─── -->
+    <div class="tl-item" id="tl-4" style="transition-delay: 0.35s">
+      <div class="tl-card">
+        <div class="tl-arrow"></div>
+        <div class="tl-icon"><i class="fa-solid fa-graduation-cap"></i></div>
+        <div class="tl-date"><i class="fa-regular fa-calendar"></i> 2023 – 2026</div>
+        <div class="tl-role">Software Engineering Student</div>
+        <div class="tl-company">HiLCoE School of Computer Science, Addis Ababa</div>
+        <div class="tl-desc">Pursuing a BSc in <strong style="color:var(--accent)">Software Engineering</strong>. Coursework spans operating systems, web development, databases, algorithms, UNIX, object-oriented programming, Windows programming, logic design, data communication &amp; networking, data structures &amp; algorithm analysis, and object-oriented software engineering — building the theoretical backbone behind every project I ship.</div>
+        <div class="tl-tags">
+          <span class="tl-tag">OS</span>
+          <span class="tl-tag">Algorithms</span>
+          <span class="tl-tag">UNIX</span>
+          <span class="tl-tag">OOP</span>
+          <span class="tl-tag">Databases</span>
+          <span class="tl-tag">Networking</span>
+          <span class="tl-tag">DSA</span>
+        </div>
+      </div>
+      <div class="tl-dot-wrap"><div class="tl-dot"></div></div>
+    </div>
+
+  </div><!-- /cyber-timeline -->
+
+  <!-- BACK -->
+  <div class="exp-back">
     <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
   </div>
+
 </main>
 
 <footer>
@@ -92,5 +508,21 @@
 </footer>
 
 <script src="app.js"></script>
+<script>
+  // Timeline scroll reveal (independent of app.js reveal system)
+  (function() {
+    const items = document.querySelectorAll('.tl-item');
+    const io = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = parseFloat(entry.target.style.transitionDelay || '0') * 1000;
+          setTimeout(() => entry.target.classList.add('in-view'), delay);
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    items.forEach(item => io.observe(item));
+  })();
+</script>
 </body>
 </html>

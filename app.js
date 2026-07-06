@@ -82,6 +82,55 @@ if (window.innerWidth > 900) {
   });
 }
 
+// ── LOGO 3D TILT ──
+(function initLogoTilt() {
+  const logo = document.querySelector('.logo');
+  if (!logo || window.innerWidth <= 900) return;
+
+  logo.style.display = 'inline-block';
+  logo.style.willChange = 'transform';
+
+  const MAX = 20;
+  const PERSPECTIVE = 350;
+  let rafId = null;
+  let targetRX = 0, targetRY = 0;
+  let currentRX = 0, currentRY = 0;
+  let hovering = false;
+
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  function tick() {
+    currentRX = lerp(currentRX, targetRX, 0.14);
+    currentRY = lerp(currentRY, targetRY, 0.14);
+
+    logo.style.transform = `perspective(${PERSPECTIVE}px) rotateX(${currentRX}deg) rotateY(${currentRY}deg) scale(${hovering ? 1.06 : 1})`;
+
+    if (hovering || Math.abs(currentRX) > 0.05 || Math.abs(currentRY) > 0.05) {
+      rafId = requestAnimationFrame(tick);
+    } else {
+      rafId = null;
+      logo.style.transform = '';
+    }
+  }
+
+  logo.addEventListener('mousemove', e => {
+    hovering = true;
+    const r  = logo.getBoundingClientRect();
+    const dx = (e.clientX - (r.left + r.width  / 2)) / (r.width  / 2);
+    const dy = (e.clientY - (r.top  + r.height / 2)) / (r.height / 2);
+    targetRY =  dx * MAX;
+    targetRX = -dy * (MAX * 0.6);
+    if (!rafId) rafId = requestAnimationFrame(tick);
+  });
+
+  logo.addEventListener('mouseleave', () => {
+    hovering  = false;
+    targetRX  = 0;
+    targetRY  = 0;
+    if (!rafId) rafId = requestAnimationFrame(tick);
+  });
+})();
+
 // ── CYBER NAME: ensure data-text is set (CSS uses it for ::before/::after) ──
 const cyberName = document.getElementById('name-glitch');
 if (cyberName) {
@@ -422,45 +471,111 @@ if (window.innerWidth > 900) {
 function applyTilt(el) {
   if (el.dataset.tilt) return;
   el.dataset.tilt = '1';
-  el.style.transformStyle = 'preserve-3d';
-  el.style.willChange = 'transform';
 
+  const isProject = el.classList.contains('project-card');
+  const MAX  = isProject ? 18 : 10;
+  const PERSP = isProject ? 600 : 1000;
+
+  // Shine overlay
   const shine = document.createElement('div');
   shine.className = 'tilt-shine';
   el.appendChild(shine);
 
-  // Stronger tilt for project cards, subtler for others
-  const isProject = el.classList.contains('project-card');
-  const max = isProject ? 18 : 12;
-  const perspective = isProject ? 700 : 900;
+  // RAF-based smooth state
+  let targetRX = 0, targetRY = 0;
+  let currentRX = 0, currentRY = 0;
+  let rafId = null;
+  let isHovered = false;
 
-  el.addEventListener('mousemove', e => {
-    const r  = el.getBoundingClientRect();
-    const dx = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
-    const dy = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
-    el.style.transition = 'transform 0.08s ease, box-shadow 0.08s ease';
-    el.style.transform  = `perspective(${perspective}px) rotateX(${-dy*max}deg) rotateY(${dx*max}deg) scale3d(1.04,1.04,1.04)`;
-    el.style.boxShadow  = `
+  function lerp(a, b, t) { return a + (b - a) * t; }
+
+  function tick() {
+    currentRX = lerp(currentRX, targetRX, 0.12);
+    currentRY = lerp(currentRY, targetRY, 0.12);
+
+    el.style.transform = `perspective(${PERSP}px) rotateX(${currentRX}deg) rotateY(${currentRY}deg) scale3d(${isHovered ? 1.04 : 1},${isHovered ? 1.04 : 1},${isHovered ? 1.04 : 1})`;
+
+    const dx = currentRY / MAX;
+    const dy = -currentRX / MAX;
+    el.style.boxShadow = isHovered ? `
       ${-dx * 24}px ${-dy * 24}px 40px rgba(224,51,76,0.25),
       ${dx * 8}px ${dy * 8}px 60px rgba(0,0,0,0.5),
       0 0 0 1px rgba(224,51,76,0.3)
-    `;
+    ` : '';
+
     shine.style.background = `radial-gradient(
       circle at ${(dx+1)/2*100}% ${(dy+1)/2*100}%,
       rgba(255,255,255,0.18) 0%,
       rgba(255,255,255,0.04) 40%,
       transparent 70%
     )`;
-    shine.style.opacity = '1';
+    shine.style.opacity = isHovered ? '1' : '0';
+
+    if (isHovered || Math.abs(currentRX) > 0.05 || Math.abs(currentRY) > 0.05) {
+      rafId = requestAnimationFrame(tick);
+    } else {
+      rafId = null;
+      el.style.transform = '';
+      el.style.boxShadow = '';
+    }
+  }
+
+  el.addEventListener('mouseenter', () => {
+    isHovered = true;
+    el.style.transition = 'none';
+    if (!rafId) rafId = requestAnimationFrame(tick);
+  });
+
+  el.addEventListener('mousemove', e => {
+    const r  = el.getBoundingClientRect();
+    const dx = (e.clientX - r.left - r.width  / 2) / (r.width  / 2);
+    const dy = (e.clientY - r.top  - r.height / 2) / (r.height / 2);
+    targetRY =  dx * MAX;
+    targetRX = -dy * MAX;
   });
 
   el.addEventListener('mouseleave', () => {
+    isHovered  = false;
+    targetRX   = 0;
+    targetRY   = 0;
     el.style.transition = 'transform 0.7s cubic-bezier(.23,1,.32,1), box-shadow 0.7s ease';
-    el.style.transform  = `perspective(${perspective}px) rotateX(0deg) rotateY(0deg) scale3d(1,1,1)`;
-    el.style.boxShadow  = '';
-    shine.style.opacity = '0';
+    if (!rafId) rafId = requestAnimationFrame(tick);
   });
 }
+
+// ── FORCE RESUME DOWNLOAD (prevent browser PDF preview) ──
+(function initResumeDownload() {
+  document.querySelectorAll('a[download]').forEach(link => {
+    link.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      if (!href || href === '#') return;
+      e.preventDefault();
+      const filename = href.split('/').pop() || 'Oliyad_Beto_CV.pdf';
+
+      // Strategy 1: fetch → blob with forced octet-stream MIME type
+      // This prevents the browser from recognising it as a PDF and opening its viewer
+      fetch(href, { cache: 'no-store' })
+        .then(res => { if (!res.ok) throw new Error('fetch failed'); return res.blob(); })
+        .then(blob => {
+          const forcedBlob = new Blob([blob], { type: 'application/octet-stream' });
+          const url = URL.createObjectURL(forcedBlob);
+          const a = document.createElement('a');
+          a.href = url; a.download = filename; a.style.display = 'none';
+          document.body.appendChild(a);
+          a.click();
+          setTimeout(() => { document.body.removeChild(a); URL.revokeObjectURL(url); }, 300);
+        })
+        .catch(() => {
+          // Strategy 2: plain anchor click (works on local file:// where fetch is blocked)
+          const a = document.createElement('a');
+          a.href = href; a.download = filename; a.style.display = 'none';
+          document.body.appendChild(a);
+          a.click();
+          setTimeout(() => document.body.removeChild(a), 300);
+        });
+    });
+  });
+})();
 
 // ── SKILL ORBS — inject on skills page ──
 function buildSkillOrbs() {
@@ -517,35 +632,55 @@ buildSkillOrbs();
 
 // ── SCROLL REVEAL + TILT INIT ──
 function initReveal() {
-  const els = document.querySelectorAll('.reveal, .card, .project-card, .timeline-item, blockquote');
+  // Select all revealable elements including experience timeline cards
+  const els = document.querySelectorAll('.reveal, .card, .project-card, .timeline-item, .tl-card, blockquote');
   const io  = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
       const el    = entry.target;
       const delay = parseFloat(el.style.animationDelay || '0') * 1000;
       setTimeout(() => {
-        el.style.opacity    = '1';
-        el.style.transform  = 'translateY(0)';
-        el.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
-        el.classList.add('in-view');
-        if (window.innerWidth > 900) applyTilt(el);
+        // 'visible' is for .reveal CSS rule, 'in-view' is for pre-reveal CSS rule
+        el.classList.add('in-view', 'visible');
+        // After transition ends, remove reveal classes so tilt can own the transform freely
+        setTimeout(() => {
+          el.classList.remove('pre-reveal', 'reveal');
+          el.style.opacity = '1'; // ensure visible after class removal
+          if (window.innerWidth > 900) applyTilt(el);
+        }, 750);
       }, delay);
       io.unobserve(el);
     });
   }, { threshold: 0.1 });
 
   els.forEach(el => {
-    if (!el.closest('.home')) {
-      el.style.opacity   = '0';
-      el.style.transform = 'translateY(30px)';
+    if (!el.closest('.home') && !el.closest('.tl-item')) {
+      el.classList.add('pre-reveal');
       io.observe(el);
     }
   });
+
+  // Apply tilt to experience timeline cards via IntersectionObserver
+  document.querySelectorAll('.tl-card').forEach(el => {
+    const io2 = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          if (window.innerWidth > 900) applyTilt(entry.target);
+          io2.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    io2.observe(el);
+  });
 }
 
-// Apply tilt immediately to home-visible cards
+// Apply tilt immediately only to cards that are already visible (in .home section)
 if (window.innerWidth > 900) {
-  document.querySelectorAll('.card, .project-card, blockquote').forEach(applyTilt);
+  document.querySelectorAll('.home .card, .home blockquote').forEach(applyTilt);
+  // Project cards have a 0.6s fadeUp CSS animation — apply tilt after it finishes
+  setTimeout(() => {
+    document.querySelectorAll('.project-card').forEach(applyTilt);
+  }, 900);
 }
 initReveal();
 
