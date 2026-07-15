@@ -409,17 +409,17 @@ section { position: relative; z-index: 2; }
   display: inline-flex !important;
   align-items: center;
   gap: 0.6rem;
-  font-size: 0.95rem;
-  letter-spacing: 0.18em;
+  font-size: 1.15rem;         /* slightly bigger */
+  letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--accent);
   font-family: 'Courier New', monospace;
-  font-weight: 600;
-  background: rgba(8,8,20,0.85);
-  border: 1px solid rgba(224,51,76,0.28);
+  font-weight: 700;
+  background: rgba(8,8,20,0.88);
+  border: 1px solid rgba(224,51,76,0.35);
   border-radius: 0.3rem;
-  padding: 0.35rem 1rem;
-  backdrop-filter: blur(6px);
+  padding: 0.45rem 1.2rem;
+  backdrop-filter: blur(8px);
   opacity: 0;
   animation: eyebrow-appear 0.5s 0.1s forwards;
 }
@@ -436,6 +436,14 @@ section { position: relative; z-index: 2; }
   box-shadow: 0 0 8px #39ff6a, 0 0 16px rgba(57,255,106,0.4);
   animation: status-pulse 1.4s ease-in-out infinite;
   flex-shrink: 0;
+}
+
+/* Light mode: ensure eyebrow stays readable */
+body.light-mode .profile-eyebrow {
+  background: rgba(255,255,255,0.92);
+  border-color: rgba(224,51,76,0.3);
+  color: var(--accent);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
 }
 
 .home-content h1 {
@@ -1918,7 +1926,10 @@ body.light-mode .back-btn:hover {
     padding: 12rem 2.5rem 5rem;
     align-items: center;
   }
-  .home-img { margin: 0 auto; }
+  .home-img {
+    margin: 0 auto;
+    margin-top: 6rem; /* give room for eyebrow above on mobile */
+  }
   .home-img img  { width: 22rem; height: 22rem; }
   .home-img-inner { transform: none !important; }
   .home-img .ring2,
@@ -1931,6 +1942,18 @@ body.light-mode .back-btn:hover {
   /* ── CONTENT TEXT ── */
   .home-content p { font-size: 1.45rem; }
   .eyebrow        { margin: 0 auto 1.2rem; }
+
+  /* Mobile: shrink eyebrow so it fits without overflowing */
+  .profile-eyebrow {
+    font-size: 0.78rem;
+    letter-spacing: 0.1em;
+    padding: 0.35rem 0.75rem;
+    top: -6.6rem;
+    white-space: normal;   /* allow wrap if needed */
+    text-align: center;
+    max-width: 90%;        /* never wider than the image block */
+    width: max-content;
+  }
 
   /* ── INFO GRID ── */
   .info-grid {
@@ -2645,8 +2668,27 @@ body.light-mode .bio-block {
 }
 body.light-mode .bio-main,
 body.light-mode .bb-typing { color: #33334a; }
-body.light-mode .bb-tag--dev { color: #52526a; border-color: rgba(0,0,0,0.12); background: rgba(0,0,0,0.03); }
+body.light-mode .bb-prompt-label { color: #008a35; }       /* green prompt stays readable */
+body.light-mode .bb-cursor       { color: var(--accent); }
+body.light-mode .bio-main .accent { color: var(--accent); }
+body.light-mode .bb-tag--cyber {
+  color: var(--accent);
+  border-color: rgba(224,51,76,0.3);
+  background: rgba(224,51,76,0.05);
+}
+body.light-mode .bb-tag--dev {
+  color: #52526a;
+  border-color: rgba(0,0,0,0.12);
+  background: rgba(0,0,0,0.03);
+}
 body.light-mode .bb-code-pill { color: #33334a; background: rgba(224,51,76,0.05); }
+/* Home tech grid labels */
+body.light-mode .home-tech-item span { color: #52526a; }
+body.light-mode .home-tech-orb {
+  background: rgba(255,255,255,0.9);
+  border-color: rgba(0,0,0,0.1);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
 
 /* ════════════════════════════════════════════════
    ABOUT PAGE — Terminal Biography Card
@@ -2819,15 +2861,37 @@ body.light-mode .mfh-phase   { border-color: rgba(0,0,0,0.06); }
 .about-stats {
   display: flex;
   justify-content: center;
-  gap: 3rem;
+  gap: 0;
   margin: 0 auto 3.5rem;
   flex-wrap: wrap;
+  position: relative;
+  z-index: 2;                        /* sit above the canvas */
+  background: rgba(10,10,22,0.7);
+  border: 1px solid rgba(224,51,76,0.18);
+  border-radius: 1rem;
+  padding: 2rem 3rem;
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  animation: fadeUp 0.6s 0.3s forwards;
+  max-width: 600px;
 }
 .about-stat {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.4rem;
+  flex: 1;
+  min-width: 130px;
+  padding: 0 2rem;
+  position: relative;
+}
+/* Divider between stats */
+.about-stat + .about-stat::before {
+  content: '';
+  position: absolute;
+  left: 0; top: 10%; bottom: 10%;
+  width: 1px;
+  background: rgba(224,51,76,0.2);
 }
 .about-stat-num {
   font-family: 'Syne', sans-serif;
@@ -2836,7 +2900,7 @@ body.light-mode .mfh-phase   { border-color: rgba(0,0,0,0.06); }
   color: var(--accent);
   line-height: 1;
   letter-spacing: -0.02em;
-  text-shadow: 0 0 20px rgba(224,51,76,0.35);
+  text-shadow: 0 0 20px rgba(224,51,76,0.45);
 }
 .about-stat-label {
   font-family: 'Courier New', monospace;
@@ -2847,8 +2911,19 @@ body.light-mode .mfh-phase   { border-color: rgba(0,0,0,0.06); }
 }
 
 /* Light mode */
-body.light-mode .about-stat-num { text-shadow: none; }
-body.light-mode .about-stat-label { color: #8888aa; }
+body.light-mode .about-stats {
+  background: rgba(255,255,255,0.95);
+  border-color: rgba(224,51,76,0.2);
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+}
+body.light-mode .about-stat + .about-stat::before {
+  background: rgba(224,51,76,0.15);
+}
+body.light-mode .about-stat-num {
+  text-shadow: none;
+  color: var(--accent);
+}
+body.light-mode .about-stat-label { color: #666688; }
 
 /* Responsive */
 @media (max-width: 600px) {

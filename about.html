@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -34,7 +34,7 @@
     </div>
 
     <!-- STAT COUNTERS -->
-    <div class="about-stats reveal" style="animation-delay:0.05s">
+    <div class="about-stats" style="animation-delay:0.05s">
       <div class="about-stat">
         <span class="about-stat-num" data-target="5" data-suffix="+">0</span>
         <span class="about-stat-label">Projects</span>
@@ -197,5 +197,12 @@
 
 <script src="app.js"></script>
 <script src="comments.js"></script>
+<script>
+  // Apply 3D tilt to the stats card after its fadeUp animation (0.3s delay + 0.6s duration = ~1s)
+  setTimeout(() => {
+    const stats = document.querySelector('.about-stats');
+    if (stats && window.innerWidth > 900) applyTilt(stats);
+  }, 1100);
+</script>
 </body>
 </html>

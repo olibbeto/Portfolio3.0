@@ -377,6 +377,73 @@
       .tl-item:nth-child(odd)  .tl-arrow,
       .tl-item:nth-child(even) .tl-arrow { left: -10px; right: auto; border-right: 10px solid rgba(224,51,76,0.3); border-left: none; }
     }
+
+    /* ── LIGHT MODE ── */
+    body.light-mode .exp-hero h1 { color: #0c0c18; }
+    body.light-mode .exp-hero p  { color: #52526a; }
+    body.light-mode .exp-hero .tag {
+      background: rgba(224,51,76,0.07);
+      border-color: rgba(224,51,76,0.2);
+    }
+
+    body.light-mode .cyber-timeline::before {
+      background: linear-gradient(
+        to bottom,
+        transparent 0%,
+        rgba(224,51,76,0.4) 8%,
+        rgba(224,51,76,0.55) 50%,
+        rgba(224,51,76,0.4) 92%,
+        transparent 100%
+      );
+    }
+
+    body.light-mode .tl-card {
+      background: #ffffff;
+      border-color: rgba(224,51,76,0.18);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.07);
+    }
+    body.light-mode .tl-card:hover {
+      border-color: rgba(224,51,76,0.4);
+      box-shadow:
+        0 0 0 1px rgba(224,51,76,0.1),
+        0 0 40px rgba(224,51,76,0.1),
+        0 20px 48px rgba(0,0,0,0.12);
+    }
+
+    body.light-mode .tl-role    { color: #0c0c18; }
+    body.light-mode .tl-company { color: #e0334c; }
+    body.light-mode .tl-company::before { background: #e0334c; }
+    body.light-mode .tl-desc    { color: #52526a; }
+    body.light-mode .tl-desc strong { color: #0c0c18; }
+
+    body.light-mode .tl-date {
+      background: rgba(224,51,76,0.07);
+      border-color: rgba(224,51,76,0.2);
+      color: var(--accent);
+    }
+
+    body.light-mode .tl-tag {
+      background: rgba(224,51,76,0.07);
+      border-color: rgba(224,51,76,0.2);
+      color: var(--accent);
+    }
+    body.light-mode .tl-tag:hover {
+      background: rgba(224,51,76,0.14);
+      border-color: rgba(224,51,76,0.4);
+    }
+
+    body.light-mode .tl-icon {
+      background: rgba(224,51,76,0.07);
+      border-color: rgba(224,51,76,0.18);
+    }
+
+    body.light-mode .tl-status { color: #008a35; }
+    body.light-mode .tl-status-dot { background: #008a35; }
+
+    body.light-mode .tl-dot {
+      border-color: var(--bg);
+      box-shadow: 0 0 0 3px rgba(224,51,76,0.35), 0 0 14px rgba(224,51,76,0.5);
+    }
   </style>
 </head>
 <body>
