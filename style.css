@@ -873,6 +873,13 @@ body.light-mode .home-tech-item:hover span { color: #0c0c18; }
   margin: 0 auto;
 }
 
+/* Expanded container for portfolio so project cards have proper breathing room */
+.page-section.portfolio-section,
+.page-section:has(.project-grid) {
+  max-width: 1380px;
+  padding: 11rem 4rem 6rem;
+}
+
 .page-header {
   text-align: center;
   margin-bottom: 5rem;
@@ -1201,25 +1208,145 @@ tr:hover td { background: rgba(255,255,255,0.02); color: var(--text); }
 .project-card.featured {
   grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: 1.15fr 1fr;
+  grid-template-columns: 1.35fr 1fr;
   align-items: stretch;
+  background: rgba(10, 10, 24, 0.94);
+  border: 1px solid rgba(224, 51, 76, 0.28);
+  border-radius: 1.4rem;
+  overflow: hidden;
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.45);
 }
-.project-card.featured .img-wrap {
-  aspect-ratio: auto;
+
+.featured-preview {
+  display: flex;
+  flex-direction: column;
+  background: #070712;
+  border-right: 1px solid rgba(224, 51, 76, 0.16);
+  position: relative;
+  overflow: hidden;
   height: 100%;
-  min-height: 320px;
 }
-.project-card.featured .img-wrap img {
-  height: 100%;
+
+.browser-bar {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  padding: 1rem 1.6rem;
+  background: rgba(12, 12, 26, 0.95);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  font-family: 'Courier New', monospace;
+  position: relative;
+  z-index: 4;
+}
+
+.browser-dots {
+  display: inline-flex;
+  gap: 0.6rem;
+  align-items: center;
+}
+
+.browser-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.browser-dot.b-red    { background: #ff5f56; box-shadow: 0 0 6px rgba(255,95,86,0.6); }
+.browser-dot.b-yellow { background: #ffbd2e; box-shadow: 0 0 6px rgba(255,189,46,0.6); }
+.browser-dot.b-green  { background: #27c93f; box-shadow: 0 0 6px rgba(39,201,63,0.6); }
+
+.browser-address {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(0, 0, 0, 0.45);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
+  padding: 0.35rem 1.2rem;
+  color: var(--text-muted);
+  font-size: 1.15rem;
+  letter-spacing: 0.04em;
+  max-width: 280px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.browser-address i {
+  color: #39ff6a;
+  font-size: 1rem;
+}
+
+.browser-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.8rem;
+  margin-left: auto;
+}
+
+.project-type-pill {
+  font-family: 'Courier New', monospace;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: rgba(240, 240, 255, 0.82);
+  padding: 0.25rem 0.8rem;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 0.4rem;
+  white-space: nowrap;
+}
+
+.project-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-family: 'Courier New', monospace;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding: 0.25rem 0.85rem;
+  background: rgba(224, 51, 76, 0.12);
+  border: 1px solid rgba(224, 51, 76, 0.3);
+  border-radius: 2rem;
+  white-space: nowrap;
+}
+
+.featured-img-box {
+  position: relative;
+  flex: 1;
+  overflow: hidden;
+  background: #060610;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 350px;
+}
+
+.featured-img-box img {
   width: 100%;
+  height: 100%;
   object-fit: cover;
-  object-position: top;
+  object-position: left top;
+  display: block;
+  transition: transform 0.5s ease, filter 0.4s ease;
 }
+
+.project-card.featured:hover .featured-img-box img {
+  transform: scale(1.03);
+  filter: brightness(1.08) contrast(1.02);
+}
+
 .project-card.featured .body {
-  padding: 3.2rem 3.2rem 3rem 2.8rem;
+  padding: 3rem 3.2rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+.project-card.featured h2 {
+  font-size: 2.6rem;
+  margin-bottom: 1.2rem;
 }
 .project-featured-tag {
   display: inline-block;
@@ -2175,6 +2302,33 @@ body.light-mode .tag-chip {
 body.light-mode .project-card .overlay {
   background: linear-gradient(to top, rgba(247,247,251,0.65) 0%, transparent 100%);
 }
+body.light-mode .project-card.featured {
+  background: #ffffff;
+  border-color: rgba(224, 51, 76, 0.22);
+}
+body.light-mode .featured-preview {
+  background: #f4f5f9;
+  border-right-color: rgba(0, 0, 0, 0.08);
+}
+body.light-mode .browser-bar {
+  background: #eaebf2;
+  border-bottom-color: rgba(0, 0, 0, 0.08);
+}
+body.light-mode .browser-address {
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.12);
+  color: #505068;
+}
+body.light-mode .project-type-pill {
+  color: #333348;
+  background: rgba(0, 0, 0, 0.05);
+  border-color: rgba(0, 0, 0, 0.1);
+}
+body.light-mode .project-status-pill {
+  color: #c9253c;
+  background: rgba(224, 51, 76, 0.08);
+  border-color: rgba(224, 51, 76, 0.22);
+}
 body.light-mode .cta-inner {
   background: #ffffff;
   border-color: rgba(224, 51, 76, 0.2);
@@ -2326,6 +2480,25 @@ body.light-mode .back-btn:hover {
     display: flex;
     flex-direction: column;
   }
+  .featured-preview {
+    border-right: none;
+    border-bottom: 1px solid rgba(224, 51, 76, 0.18);
+  }
+  .browser-bar {
+    padding: 0.8rem 1.4rem;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+  }
+  .browser-address {
+    max-width: 170px;
+    font-size: 1.05rem;
+    padding: 0.3rem 0.8rem;
+  }
+  .featured-img-box {
+    aspect-ratio: 16 / 9;
+    min-height: auto;
+    height: auto;
+  }
   .project-card.featured .img-wrap {
     aspect-ratio: 16 / 9;
     height: auto;
@@ -2333,6 +2506,9 @@ body.light-mode .back-btn:hover {
   }
   .project-card.featured .body {
     padding: 2.2rem 2.2rem 2.5rem;
+  }
+  .project-card.featured h2 {
+    font-size: 2.2rem;
   }
 
   .skills-top-grid { grid-template-columns: 1fr 1fr; }
@@ -2360,6 +2536,8 @@ body.light-mode .back-btn:hover {
 
   /* ── PAGE SECTIONS ── */
   .page-section { padding: 10rem 2rem 4rem; }
+  .page-section.portfolio-section,
+  .page-section:has(.project-grid) { padding: 10rem 2rem 4rem; }
   .page-header h1 { font-size: 3.6rem; }
 
   /* ── CARDS ── */
@@ -2670,6 +2848,8 @@ nav a { overflow: hidden; }
 
   /* ── PAGE HEADER ── */
   .page-section { padding: 10rem 1.5rem 3rem; }
+  .page-section.portfolio-section,
+  .page-section:has(.project-grid) { padding: 10rem 1.5rem 3rem; }
   .page-header h1 { font-size: 3rem; }
   .page-header p  { font-size: 1.4rem; }
 
