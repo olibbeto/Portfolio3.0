@@ -150,28 +150,30 @@
         </div>
       </div>
 
-      <!-- 3 — Open Photobooth -->
-      <div class="project-card" data-category="web" style="animation-delay:0.15s">
+      <!-- 3 — RetroBooth (Desktop Photo Booth Software) -->
+      <div class="project-card" data-category="desktop" style="animation-delay:0.15s">
         <div class="img-wrap">
-          <span class="project-type-badge">// WEBCAM & CANVAS</span>
-          <span class="project-status-badge"><span class="status-pulse-dot"></span> Live</span>
-          <img src="images/open-photobooth.webp" alt="Screenshot of Open Photobooth digital camera app featuring live filters and retro photo strip generator" width="1200" height="675" loading="lazy" decoding="async">
+          <span class="project-type-badge">// RUST &amp; HARDWARE</span>
+          <span class="project-status-badge"><span class="status-pulse-dot dot-accent"></span> Desktop App</span>
+          <img src="images/retrobooth.webp" alt="Screenshot of RetroBooth professional photo booth software interface with real-time camera preview, filter engine, and print templates" width="1200" height="675" loading="lazy" decoding="async">
           <div class="overlay"></div>
         </div>
         <div class="body">
           <h2>
-            <a href="https://github.com/olibbeto" target="_blank" rel="noopener noreferrer" class="project-card-link">Open Photobooth</a>
+            <a href="https://github.com/olibbeto" target="_blank" rel="noopener noreferrer" class="project-card-link">RetroBooth</a>
           </h2>
           <div class="project-case-study">
-            <div class="cs-row"><strong class="cs-label">Problem:</strong> Photobooth experiences often rely on proprietary hardware or native software for camera capture, color filtering, and printable strip output.</div>
-            <div class="cs-row"><strong class="cs-label">What I built:</strong> A web-based digital photobooth utilizing WebRTC for camera streaming, HTML5 Canvas for real-time retro/cyber filters, sticker overlays, timed burst capture, and instant photo strip generation.</div>
-            <div class="cs-row"><strong class="cs-label">Key challenge:</strong> Real-time multi-filter canvas compositing and high-resolution export without frame drops, implementing cross-browser MediaDevices webcam streaming and responsive aspect-ratio handling.</div>
+            <div class="cs-row"><strong class="cs-label">Problem:</strong> Commercial event photo booths rely on expensive, fragmented software with rigid templates, clunky driver configurations, and high latency that frequently stall during live events.</div>
+            <div class="cs-row"><strong class="cs-label">What I built:</strong> A high-performance, offline-first Windows photo booth application built in Rust and egui, featuring dual operator Studio &amp; guest Kiosk modes, direct Canon EDSDK and Nikon SDK hardware integration via dedicated IPC host processes, automated 300 DPI composite template rendering, 3D LUT (.cube) color grading, and zero-latency Windows GDI printing.</div>
+            <div class="cs-row"><strong class="cs-label">Key challenge:</strong> Architecting a low-latency IPC protocol between the UI and native C++ camera SDK hosts, optimizing per-pixel CPU image compositing in Rust for instant 300 DPI strip output, and engineering a resilient guest kiosk state machine with single-shot retake workflows and PIN-protected operator controls.</div>
           </div>
           <div class="project-tags">
-            <span class="tag-chip">Canvas API</span>
-            <span class="tag-chip">WebRTC</span>
-            <span class="tag-chip">JavaScript</span>
-            <span class="tag-chip">CSS Filters</span>
+            <span class="tag-chip">Rust</span>
+            <span class="tag-chip">egui</span>
+            <span class="tag-chip">Canon / Nikon SDK</span>
+            <span class="tag-chip">Windows GDI</span>
+            <span class="tag-chip">IPC</span>
+            <span class="tag-chip">Image Pipeline</span>
           </div>
           <div class="project-actions">
             <a href="https://github.com/olibbeto" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
@@ -244,7 +246,7 @@
         </div>
       </div>
 
-      <!-- 6 — E-Commerce Website (Universal Market) -->
+      <!-- 6 — Universal Market -->
       <div class="project-card" data-category="web" style="animation-delay:0.3s">
         <div class="img-wrap">
           <span class="project-type-badge">// STOREFRONT</span>
@@ -254,7 +256,7 @@
         </div>
         <div class="body">
           <h2>
-            <a href="https://olibbeto.github.io/Universal-Market/" target="_blank" rel="noopener noreferrer" class="project-card-link">E-Commerce Website</a>
+            <a href="https://olibbeto.github.io/Universal-Market/" target="_blank" rel="noopener noreferrer" class="project-card-link">Universal Market</a>
           </h2>
           <div class="project-case-study">
             <div class="cs-row"><strong class="cs-label">Problem:</strong> Creating an immersive, responsive e-commerce shopping experience purely on the client side without relying on frontend frameworks or backends.</div>
@@ -271,8 +273,8 @@
             <a href="https://olibbeto.github.io/Universal-Market/" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
               <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
             </a>
-            <a href="#" class="btn btn-outline btn-sm btn-disabled" aria-disabled="true" title="Repo coming soon">
-              <i class="fa-brands fa-github"></i> Repo coming soon
+            <a href="https://github.com/olibbeto/Universal-Market" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+              <i class="fa-brands fa-github"></i> GitHub
             </a>
           </div>
         </div>
