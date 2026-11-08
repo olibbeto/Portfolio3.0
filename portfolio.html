@@ -1,15 +1,30 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portfolio &mdash; Oliyad Beto</title>
+  <title>Projects &mdash; Oliyad Beto | Software Engineer</title>
+  <meta name="description" content="Explore software engineering and web development projects by Oliyad Beto &mdash; 3D WebGL experiences, full-stack platforms, banking systems, games, and responsive websites.">
+  <meta name="theme-color" content="#060610">
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Projects &mdash; Oliyad Beto | Software Engineer">
+  <meta property="og:description" content="Explore software engineering and web development projects by Oliyad Beto &mdash; 3D WebGL experiences, full-stack platforms, banking systems, games, and responsive websites.">
+  <meta property="og:image" content="images/benti-fluha.webp">
+  <meta property="og:url" content="https://olibbeto.github.io/Portfolio3.0/portfolio.html">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <canvas id="particles-canvas"></canvas>
+
+<!-- Custom cursor -->
+<div class="cursor-dot" id="cursor-dot"></div>
+<div class="cursor-ring" id="cursor-ring"></div>
+
+<!-- Scroll progress bar -->
+<div class="scroll-indicator" id="scroll-bar"></div>
 
 <header id="main-header">
   <a href="index.html" class="logo">Oliyad Beto</a>
@@ -19,6 +34,9 @@
     <a href="skills.html">Skills</a>
     <a href="experience.html">Experience</a>
     <a href="portfolio.html" class="active">Portfolio</a>
+    <a class="resume-download-btn" href="Oliyad_Beto_CV.pdf" download aria-label="Download resume" title="Download Resume">
+      <i class="fa-solid fa-file-arrow-down"></i>
+    </a>
     <button class="toggle-mode-btn" id="theme-toggle" aria-label="Toggle theme">
       <i class="fa-solid fa-moon"></i>
     </button>
@@ -29,128 +47,350 @@
   <div class="page-section">
     <div class="page-header">
       <span class="tag">What I&apos;ve built</span>
-      <h1>My <span>Projects</span></h1>
-      <p>A collection of projects I&apos;ve built &mdash; from banking systems to games, e-commerce platforms to personal websites.</p>
+      <h1>Featured <span>Projects</span></h1>
+      <p>A collection of software systems, 3D interactive graphics, full-stack applications, and responsive platforms built with modern technologies.</p>
+    </div>
+
+    <!-- Category Filter Controls -->
+    <div class="project-filters" role="group" aria-label="Filter projects by category">
+      <button type="button" class="filter-btn active" data-filter="all" aria-pressed="true">
+        <i class="fa-solid fa-layer-group"></i> All
+      </button>
+      <button type="button" class="filter-btn" data-filter="web" aria-pressed="false">
+        <i class="fa-solid fa-globe"></i> Web
+      </button>
+      <button type="button" class="filter-btn" data-filter="3d" aria-pressed="false">
+        <i class="fa-solid fa-cube"></i> 3D / WebGL
+      </button>
+      <button type="button" class="filter-btn" data-filter="desktop" aria-pressed="false">
+        <i class="fa-solid fa-desktop"></i> Desktop
+      </button>
+      <button type="button" class="filter-btn" data-filter="games" aria-pressed="false">
+        <i class="fa-solid fa-gamepad"></i> Games
+      </button>
     </div>
 
     <div class="project-grid">
 
-      <!-- 1 — Bank Management System -->
-      <div class="project-card" style="animation-delay:0.1s">
+      <!-- 1 — Benti Fluha (FEATURED: Spans both columns) -->
+      <div class="project-card featured" data-category="web" style="animation-delay:0.05s">
         <div class="img-wrap">
-          <img src="images/photo_2025-08-19_02-33-31.jpg" alt="Bank Management System">
+          <span class="project-type-badge">// RESORT & SPA</span>
+          <span class="project-status-badge"><span class="status-pulse-dot"></span> Live</span>
+          <img src="images/benti-fluha.webp" alt="Screenshot of the Benti Fluha resort and spa website homepage hero section" width="1200" height="675" loading="lazy" decoding="async">
           <div class="overlay"></div>
         </div>
         <div class="body">
-          <h2>Bank Management System</h2>
-          <div class="tech-line">// C# &middot; .NET &middot; MySQL &middot; OOP</div>
-          <p>A full-featured Bank Management System built with C# simulating core banking operations &mdash; account creation, deposits, withdrawals, and balance inquiries &mdash; with MySQL database connectivity.</p>
-          <div class="project-tags">
-            <span class="tag-chip">C#</span>
-            <span class="tag-chip">.NET</span>
-            <span class="tag-chip">MySQL</span>
-            <span class="tag-chip">OOP</span>
+          <span class="project-featured-tag">// FEATURED SHOWCASE</span>
+          <h2>
+            <a href="https://olibbeto.github.io/BentiFluha/" target="_blank" rel="noopener noreferrer" class="project-card-link">Benti Fluha</a>
+          </h2>
+          <div class="project-case-study">
+            <div class="cs-row"><strong class="cs-label">Problem:</strong> A natural hot spring resort and spa needed an online presence to showcase accommodations, spa services, and visual amenities to prospective guests.</div>
+            <div class="cs-row"><strong class="cs-label">What I built:</strong> A fully responsive multi-section showcase featuring room highlights, services breakdown, interactive image gallery, and a direct inquiry contact form.</div>
+            <div class="cs-row"><strong class="cs-label">Key challenge:</strong> Deployed live to GitHub Pages with mobile-first responsive layouts; [TODO: one sentence on your biggest styling or responsive layout challenge solved].</div>
           </div>
-          <a href="https://github.com/olibbeto/BankManagment" target="_blank" class="btn btn-outline" style="font-size:1.3rem; padding:0.8rem 1.8rem;">
-            <i class="fa-brands fa-github"></i> View on GitHub
-          </a>
-        </div>
-      </div>
-
-      
-      <div class="project-card" style="animation-delay:0.2s">
-        <div class="img-wrap">
-          <img src="images/benti_fluha.png" alt="Benti Fluha Website">
-          <div class="overlay"></div>
-        </div>
-        <div class="body">
-          <h2>Benti Fluha</h2>
-          <div class="tech-line">// HTML5 &middot; CSS3 &middot; JavaScript &middot; Responsive</div>
-          <p>A professional website for Benti Fluha &mdash; a natural hot spring resort and spa. Features a full hotel showcase, services overview, gallery, and contact section. Fully responsive and deployed live.</p>
           <div class="project-tags">
             <span class="tag-chip">HTML5</span>
             <span class="tag-chip">CSS3</span>
             <span class="tag-chip">JavaScript</span>
             <span class="tag-chip">Responsive</span>
           </div>
-          <a href="https://olibbeto.github.io/BentiFluha/" target="_blank" class="btn btn-outline" style="font-size:1.3rem; padding:0.8rem 1.8rem;">
-            <i class="fa-solid fa-arrow-up-right-from-square"></i> View Live
-          </a>
+          <div class="project-actions">
+            <a href="https://olibbeto.github.io/BentiFluha/" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+            </a>
+          </div>
         </div>
       </div>
 
-      <!-- 3 — E-Commerce Website -->
-      <div class="project-card" style="animation-delay:0.3s">
+      <!-- 2 — Interactive 3D Art Museum -->
+      <div class="project-card" data-category="3d web" style="animation-delay:0.1s">
         <div class="img-wrap">
-          <img src="images/Screenshot 2026-06-04 015425.png" alt="E-Commerce Website">
+          <span class="project-type-badge">// 3D VIRTUAL SPACE</span>
+          <span class="project-status-badge"><span class="status-pulse-dot dot-cyan"></span> 3D WebGL</span>
+          <img src="images/3d-art-museum.webp" alt="Screenshot of Interactive 3D Art Museum virtual gallery space built with Three.js and WebGL" width="1200" height="675" loading="lazy" decoding="async">
           <div class="overlay"></div>
         </div>
         <div class="body">
-          <h2>E-Commerce Website</h2>
-          <div class="tech-line">// HTML5 &middot; CSS3 &middot; JavaScript</div> 
-          <p>A fully client side cyberpunk-themed E-commerce demo store no frameworks, no backend. 🎨 Cyberpunk  "Grid Runner" UI — neon glows, glassmorphism cards, animated ticker, HUD panels</p>
+          <h2>
+            <a href="https://github.com/olibbeto" target="_blank" rel="noopener noreferrer" class="project-card-link">Interactive 3D Art Museum</a>
+          </h2>
+          <div class="project-case-study">
+            <div class="cs-row"><strong class="cs-label">Problem:</strong> Designing an immersive virtual gallery that lets visitors navigate and explore curated digital exhibitions in full real-time 3D within the browser.</div>
+            <div class="cs-row"><strong class="cs-label">What I built:</strong> A 3D museum environment built with Three.js and WebGL, featuring procedural architectural rooms, dynamic spotlights, custom framed artworks, and first-person exploration controls.</div>
+            <div class="cs-row"><strong class="cs-label">Key challenge:</strong> Optimizing WebGL render loops, geometry culling, and texture memory for consistent 60 FPS performance; [TODO: one sentence on lighting or collision handling].</div>
+          </div>
+          <div class="project-tags">
+            <span class="tag-chip">Three.js</span>
+            <span class="tag-chip">WebGL</span>
+            <span class="tag-chip">3D Graphics</span>
+            <span class="tag-chip">JavaScript</span>
+          </div>
+          <div class="project-actions">
+            <a href="https://github.com/olibbeto" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+              <i class="fa-brands fa-github"></i> GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3 — Open Photobooth -->
+      <div class="project-card" data-category="web" style="animation-delay:0.15s">
+        <div class="img-wrap">
+          <span class="project-type-badge">// WEBCAM & CANVAS</span>
+          <span class="project-status-badge"><span class="status-pulse-dot"></span> Live</span>
+          <img src="images/open-photobooth.webp" alt="Screenshot of Open Photobooth digital camera app featuring live filters and retro photo strip generator" width="1200" height="675" loading="lazy" decoding="async">
+          <div class="overlay"></div>
+        </div>
+        <div class="body">
+          <h2>
+            <a href="https://github.com/olibbeto" target="_blank" rel="noopener noreferrer" class="project-card-link">Open Photobooth</a>
+          </h2>
+          <div class="project-case-study">
+            <div class="cs-row"><strong class="cs-label">Problem:</strong> Photobooth experiences often rely on proprietary hardware or native software for camera capture, color filtering, and printable strip output.</div>
+            <div class="cs-row"><strong class="cs-label">What I built:</strong> A web-based digital photobooth utilizing WebRTC for camera streaming, HTML5 Canvas for real-time retro/cyber filters, sticker overlays, timed burst capture, and instant photo strip generation.</div>
+            <div class="cs-row"><strong class="cs-label">Key challenge:</strong> Real-time multi-filter canvas compositing and high-resolution export without frame drops; [TODO: one sentence on canvas export or camera aspect-ratio handling].</div>
+          </div>
+          <div class="project-tags">
+            <span class="tag-chip">Canvas API</span>
+            <span class="tag-chip">WebRTC</span>
+            <span class="tag-chip">JavaScript</span>
+            <span class="tag-chip">CSS Filters</span>
+          </div>
+          <div class="project-actions">
+            <a href="https://github.com/olibbeto" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+              <i class="fa-brands fa-github"></i> GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4 — E-Learning Platform -->
+      <div class="project-card" data-category="web" style="animation-delay:0.2s">
+        <div class="img-wrap">
+          <span class="project-type-badge">// FULL-STACK LMS</span>
+          <span class="project-status-badge"><span class="status-pulse-dot dot-cyan"></span> Full-Stack</span>
+          <img src="images/e-learning.webp" alt="Screenshot of Learnease interactive E-Learning platform dashboard with modular video courses and progress tracker" width="1200" height="675" loading="lazy" decoding="async">
+          <div class="overlay"></div>
+        </div>
+        <div class="body">
+          <h2>
+            <a href="https://github.com/olibbeto" target="_blank" rel="noopener noreferrer" class="project-card-link">E-Learning Platform</a>
+          </h2>
+          <div class="project-case-study">
+            <div class="cs-row"><strong class="cs-label">Problem:</strong> Students and instructors need a centralized platform that unifies video lecture streaming, interactive assessments, and real-time progress monitoring.</div>
+            <div class="cs-row"><strong class="cs-label">What I built:</strong> A full-stack educational web application with structured module paths, multimedia lecture delivery, interactive quizzes, student enrollment tracking, and instructor dashboards.</div>
+            <div class="cs-row"><strong class="cs-label">Key challenge:</strong> Designing normalized database schemas in MongoDB and responsive UI state management; [TODO: one sentence on role-based authentication or quiz grading workflow].</div>
+          </div>
+          <div class="project-tags">
+            <span class="tag-chip">React</span>
+            <span class="tag-chip">Node.js</span>
+            <span class="tag-chip">Express</span>
+            <span class="tag-chip">MongoDB</span>
+            <span class="tag-chip">Full-Stack</span>
+          </div>
+          <div class="project-actions">
+            <a href="https://github.com/olibbeto" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+              <i class="fa-brands fa-github"></i> GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5 — Interactive 3D Website -->
+      <div class="project-card" data-category="3d web" style="animation-delay:0.25s">
+        <div class="img-wrap">
+          <span class="project-type-badge">// CREATIVE 3D WEB</span>
+          <span class="project-status-badge"><span class="status-pulse-dot dot-cyan"></span> 3D WebGL</span>
+          <img src="images/interactive-3d-website.webp" alt="Screenshot of Interactive 3D Website featuring procedural 3D model visualization and shader effects" width="1200" height="675" loading="lazy" decoding="async">
+          <div class="overlay"></div>
+        </div>
+        <div class="body">
+          <h2>
+            <a href="https://github.com/olibbeto" target="_blank" rel="noopener noreferrer" class="project-card-link">Interactive 3D Website</a>
+          </h2>
+          <div class="project-case-study">
+            <div class="cs-row"><strong class="cs-label">Problem:</strong> Creating an engaging, futuristic promotional web destination that stands apart from flat layouts through real-time interactive 3D computer graphics.</div>
+            <div class="cs-row"><strong class="cs-label">What I built:</strong> A 3D web experience built with Three.js and custom GLSL shaders, featuring procedural geometric mesh deformation, dynamic lighting, particle swarms, and scroll-bound camera choreographies.</div>
+            <div class="cs-row"><strong class="cs-label">Key challenge:</strong> Coordinating fragment shader animations with smooth DOM scroll triggers; [TODO: one sentence on shader optimization or asset preloading].</div>
+          </div>
+          <div class="project-tags">
+            <span class="tag-chip">Three.js</span>
+            <span class="tag-chip">GLSL</span>
+            <span class="tag-chip">GSAP</span>
+            <span class="tag-chip">WebGL</span>
+          </div>
+          <div class="project-actions">
+            <a href="https://github.com/olibbeto" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+              <i class="fa-brands fa-github"></i> GitHub
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6 — E-Commerce Website (Universal Market) -->
+      <div class="project-card" data-category="web" style="animation-delay:0.3s">
+        <div class="img-wrap">
+          <span class="project-type-badge">// STOREFRONT</span>
+          <span class="project-status-badge"><span class="status-pulse-dot"></span> Live</span>
+          <img src="images/ecommerce.webp" alt="Screenshot of Universal Market cyberpunk-themed e-commerce storefront with neon HUD interface" width="1200" height="675" loading="lazy" decoding="async">
+          <div class="overlay"></div>
+        </div>
+        <div class="body">
+          <h2>
+            <a href="https://olibbeto.github.io/Universal-Market/" target="_blank" rel="noopener noreferrer" class="project-card-link">E-Commerce Website</a>
+          </h2>
+          <div class="project-case-study">
+            <div class="cs-row"><strong class="cs-label">Problem:</strong> Creating an immersive, responsive e-commerce shopping experience purely on the client side without relying on frontend frameworks or backends.</div>
+            <div class="cs-row"><strong class="cs-label">What I built:</strong> A cyberpunk-styled "Grid Runner" storefront in vanilla HTML, CSS, and JavaScript featuring glassmorphism product cards, interactive cart interactions, animated status tickers, and HUD panels.</div>
+            <div class="cs-row"><strong class="cs-label">Key challenge:</strong> Achieving rich animations and high visual fidelity with pure CSS and vanilla DOM manipulation; [TODO: one sentence on performance optimization or state handling in pure JS].</div>
+          </div>
           <div class="project-tags">
             <span class="tag-chip">HTML5</span>
             <span class="tag-chip">CSS3</span>
             <span class="tag-chip">JavaScript</span>
+            <span class="tag-chip">Vanilla JS</span>
           </div>
-          <a href="https://olibbeto.github.io/Universal-Market/" target="_blank" class="btn btn-outline" style="font-size:1.3rem; padding:0.8rem 1.8rem;">
-            <i class="fa-brands fa-github"></i> View on GitHub
-          </a>
+          <div class="project-actions">
+            <a href="https://olibbeto.github.io/Universal-Market/" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+            </a>
+            <!-- TODO: add E-Commerce GitHub repository URL once public -->
+            <a href="#" class="btn btn-outline btn-sm btn-disabled" aria-disabled="true" title="Repo coming soon">
+              <i class="fa-brands fa-github"></i> Repo coming soon
+            </a>
+          </div>
         </div>
       </div>
 
-      <!-- 4 — Portfolio Website -->
-      <div class="project-card" style="animation-delay:0.4s">
+      <!-- 7 — Bank Management System -->
+      <!-- TODO: Replace images/bank-system.webp with clean software screenshot or demo GIF -->
+      <div class="project-card" data-category="desktop" style="animation-delay:0.35s">
         <div class="img-wrap">
-          <img src="images/Screenshot 2026-06-04 020254 (2).png " alt="Portfolio Website">
+          <span class="project-type-badge">// DESKTOP SOFTWARE</span>
+          <span class="project-status-badge"><span class="status-pulse-dot dot-accent"></span> Desktop app</span>
+          <img src="images/bank-system.webp" alt="Interface preview placeholder for C# .NET Bank Management System desktop application" width="1200" height="675" loading="lazy" decoding="async">
           <div class="overlay"></div>
         </div>
         <div class="body">
-          <h2>Portfolio Website</h2>
-          <div class="tech-line">// HTML5 &middot; CSS3 &middot; JavaScript</div>
-          <p>A personal portfolio website built with HTML, CSS and JavaScript &mdash; fully responsive with a cyber-themed UI, project showcase, skill proficiency bars, and live visitor comments.</p>
+          <h2>
+            <a href="https://github.com/olibbeto/BankManagment" target="_blank" rel="noopener noreferrer" class="project-card-link">Bank Management System</a>
+          </h2>
+          <div class="project-case-study">
+            <div class="cs-row"><strong class="cs-label">Problem:</strong> Simulating reliable desktop financial operations requiring persistent records, data validation, and transactional account integrity.</div>
+            <div class="cs-row"><strong class="cs-label">What I built:</strong> A C#/.NET desktop banking application implementing object-oriented models for account creation, deposits, withdrawals, and balance tracking backed by a MySQL database.</div>
+            <div class="cs-row"><strong class="cs-label">Key challenge:</strong> Structuring clean OOP domain entities and managing SQL transaction state; [TODO: one sentence on how you handled input validation or concurrency edge cases].</div>
+          </div>
           <div class="project-tags">
-            <span class="tag-chip">HTML5</span>
-            <span class="tag-chip">CSS3</span>
-            <span class="tag-chip">JavaScript</span>
+            <span class="tag-chip">C#</span>
+            <span class="tag-chip">.NET</span>
+            <span class="tag-chip">MySQL</span>
+            <span class="tag-chip">OOP</span>
           </div>
-          <a href="https://github.com/olibbeto/Portfolio2.0" target="_blank" class="btn btn-outline" style="font-size:1.3rem; padding:0.8rem 1.8rem;">
-            <i class="fa-brands fa-github"></i> View on GitHub
-          </a>
+          <div class="project-actions">
+            <a href="https://github.com/olibbeto/BankManagment" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+              <i class="fa-brands fa-github"></i> GitHub
+            </a>
+          </div>
         </div>
       </div>
 
-      <!-- 5 — Snake Game -->
-      <div class="project-card" style="animation-delay:0.5s">
+      <!-- 8 — Snake Game -->
+      <!-- TODO: Replace images/snake-game.webp with clean software screenshot or demo GIF -->
+      <div class="project-card" data-category="games desktop" style="animation-delay:0.4s">
         <div class="img-wrap">
-          <img src="images/photo_2025-08-19_02-35-19.jpg" alt="Snake Game">
+          <span class="project-type-badge">// GAME DEV</span>
+          <span class="project-status-badge"><span class="status-pulse-dot dot-accent"></span> Desktop app</span>
+          <img src="images/snake-game.webp" alt="Game preview placeholder for Java Swing Snake Game with MySQL leaderboard" width="1200" height="675" loading="lazy" decoding="async">
           <div class="overlay"></div>
         </div>
         <div class="body">
-          <h2>Snake Game</h2>
-          <div class="tech-line">// Java &middot; Swing &middot; JDBC &middot; MySQL</div>
-          <p>An interactive Snake game built with Java Swing/AWT featuring core game logic, user input handling, and a persistent leaderboard powered by MySQL via JDBC for multi-player score tracking.</p>
+          <h2>
+            <a href="https://github.com/olibbeto/SnakeGame" target="_blank" rel="noopener noreferrer" class="project-card-link">Snake Game</a>
+          </h2>
+          <div class="project-case-study">
+            <div class="cs-row"><strong class="cs-label">Problem:</strong> Implementing real-time 2D game loops, collision detection, and persistent multi-player high scores in desktop Java.</div>
+            <div class="cs-row"><strong class="cs-label">What I built:</strong> An interactive Snake game using Java Swing and AWT with real-time keyboard handling, game state management, and a persistent MySQL leaderboard connected via JDBC.</div>
+            <div class="cs-row"><strong class="cs-label">Key challenge:</strong> Synchronizing the event dispatch thread with game state updates and database queries; [TODO: one sentence on collision detection or leaderboard query optimization].</div>
+          </div>
           <div class="project-tags">
             <span class="tag-chip">Java</span>
             <span class="tag-chip">Swing/AWT</span>
             <span class="tag-chip">JDBC</span>
             <span class="tag-chip">MySQL</span>
           </div>
-          <a href="#" class="btn btn-outline" style="font-size:1.3rem; padding:0.8rem 1.8rem;">
-            <i class="fa-solid fa-arrow-up-right-from-square"></i> View Project
-          </a>
+          <div class="project-actions">
+            <!-- TODO: confirm repo URL (https://github.com/olibbeto/SnakeGame) -->
+            <a href="https://github.com/olibbeto/SnakeGame" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm btn-disabled" aria-disabled="true" title="Repo coming soon">
+              <i class="fa-brands fa-github"></i> Repo coming soon
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 9 — Portfolio Website -->
+      <div class="project-card" data-category="web" style="animation-delay:0.45s">
+        <div class="img-wrap">
+          <span class="project-type-badge">// PERSONAL BRAND</span>
+          <span class="project-status-badge"><span class="status-pulse-dot"></span> Live</span>
+          <img src="images/portfolio.webp" alt="Screenshot of Oliyad Beto personal portfolio website showcasing cyberpunk theme and interactive elements" width="1200" height="675" loading="lazy" decoding="async">
+          <div class="overlay"></div>
+        </div>
+        <div class="body">
+          <h2>
+            <a href="https://olibbeto.github.io/Portfolio3.0/" target="_blank" rel="noopener noreferrer" class="project-card-link">Portfolio Website</a>
+          </h2>
+          <div class="project-case-study">
+            <div class="cs-row"><strong class="cs-label">Problem:</strong> Presenting technical software engineering projects, system skills, and interactive case studies within a memorable developer personal brand.</div>
+            <div class="cs-row"><strong class="cs-label">What I built:</strong> A cyber-themed portfolio built from scratch in vanilla HTML5, CSS3, and modern JavaScript, featuring 3D perspective card tilts, dynamic theme toggle, interactive terminal bio, and visitor feedback.</div>
+            <div class="cs-row"><strong class="cs-label">Key challenge:</strong> Building performant 3D tilt and particle animations without third-party frameworks while keeping accessible light and dark modes; [TODO: one sentence on a key technical achievement].</div>
+          </div>
+          <div class="project-tags">
+            <span class="tag-chip">HTML5</span>
+            <span class="tag-chip">CSS3</span>
+            <span class="tag-chip">JavaScript</span>
+            <span class="tag-chip">Vanilla JS</span>
+          </div>
+          <div class="project-actions">
+            <a href="https://olibbeto.github.io/Portfolio3.0/" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Live Demo
+            </a>
+            <a href="https://github.com/olibbeto/Portfolio3.0" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+              <i class="fa-brands fa-github"></i> GitHub
+            </a>
+          </div>
         </div>
       </div>
 
     </div>
 
-    <a href="index.html" class="back-btn" style="margin-top:3rem"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+    <!-- Call to Action Section -->
+    <div class="projects-cta-section">
+      <div class="cta-inner">
+        <span class="cta-tag">// COLLABORATION</span>
+        <h2 class="cta-title">Like what you see? <span class="highlight">Let&apos;s work together.</span></h2>
+        <p class="cta-desc">I&apos;m always open to discussing new opportunities, software engineering roles, or freelance projects.</p>
+        <div class="cta-buttons">
+          <a href="mailto:oliyadbeto@gmail.com" class="btn btn-primary">
+            <i class="fa-solid fa-envelope"></i> Email Me
+          </a>
+          <a href="https://www.linkedin.com/in/oliyad-beto-108540385/" target="_blank" rel="noopener noreferrer" class="btn btn-outline">
+            <i class="fa-brands fa-linkedin"></i> LinkedIn
+          </a>
+          <a href="Oliyad_Beto_CV.pdf" download class="btn btn-outline">
+            <i class="fa-solid fa-file-arrow-down"></i> Download CV
+          </a>
+        </div>
+      </div>
+      <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+    </div>
+
   </div>
 </main>
 
 <footer>
-  <p>&copy; 2025 <span>Oliyad Beto</span>. All rights reserved.</p>
+  <p>&copy; 2026 <span>Oliyad Beto</span>. All rights reserved.</p>
 </footer>
 
 <script src="app.js"></script>

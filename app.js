@@ -86,6 +86,7 @@ if (window.innerWidth > 900) {
 (function initLogoTilt() {
   const logo = document.querySelector('.logo');
   if (!logo || window.innerWidth <= 900) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   logo.style.display = 'inline-block';
   logo.style.willChange = 'transform';
@@ -469,6 +470,7 @@ if (window.innerWidth > 900) {
 
 // ── 3D CARD TILT ──
 function applyTilt(el) {
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
   if (el.dataset.tilt) return;
   el.dataset.tilt = '1';
 
@@ -848,6 +850,7 @@ document.head.appendChild(rippleStyle);
   const wrapper = document.getElementById('profile-3d');
   const inner   = document.getElementById('profile-inner');
   if (!wrapper || !inner || window.innerWidth <= 900) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
 
   const MAX_TILT   = 22;   // max degrees of tilt
   const MAX_SHIFT  = 10;   // max px of perspective shift
@@ -902,5 +905,56 @@ document.head.appendChild(rippleStyle);
     targetRX   = 0;
     targetRY   = 0;
     if (!rafId) rafId = requestAnimationFrame(tick);
+  });
+})();
+
+// ── PROJECT CATEGORY FILTERS ──
+(function initProjectFilters() {
+  const filterBtns = document.querySelectorAll('.project-filters .filter-btn');
+  const cards = document.querySelectorAll('.project-grid .project-card');
+  if (!filterBtns.length || !cards.length) return;
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cat = btn.dataset.filter;
+      filterBtns.forEach(b => {
+        const isCurrent = b === btn;
+        b.classList.toggle('active', isCurrent);
+        b.setAttribute('aria-pressed', isCurrent ? 'true' : 'false');
+      });
+
+      cards.forEach(card => {
+        const cats = (card.dataset.category || '').toLowerCase().split(/\s+/);
+        const matches = cat === 'all' || cats.includes(cat.toLowerCase());
+        if (matches) {
+          card.classList.remove('filter-hidden');
+          card.style.opacity = '0';
+          card.style.transform = 'translateY(10px)';
+          requestAnimationFrame(() => {
+            card.style.transition = 'opacity 0.28s ease, transform 0.28s ease';
+            card.style.opacity = '1';
+            card.style.transform = '';
+          });
+        } else {
+          card.classList.add('filter-hidden');
+        }
+      });
+    });
+  });
+})();
+
+// ── PREVENT CLICKS ON DISABLED BUTTONS ──
+document.querySelectorAll('.btn-disabled').forEach(btn => {
+  btn.addEventListener('click', e => {
+    e.preventDefault();
+    e.stopPropagation();
+  });
+});
+
+// ── DYNAMIC COPYRIGHT YEAR ──
+(function updateFooterYear() {
+  const currentYear = new Date().getFullYear();
+  document.querySelectorAll('footer p').forEach(p => {
+    p.innerHTML = p.innerHTML.replace(/\b202[0-9]\b/, currentYear);
   });
 })();
