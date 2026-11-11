@@ -475,9 +475,9 @@ function applyTilt(el) {
   if (el.dataset.tilt) return;
   el.dataset.tilt = '1';
 
-  const MAX   = 6;
-  const PERSP = 1100;
-  const SCALE = 1.015;
+  const MAX   = 10;
+  const PERSP = 1000;
+  const SCALE = 1.04;
 
   // Shine overlay
   const shine = document.createElement('div');
