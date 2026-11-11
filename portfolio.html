@@ -72,8 +72,8 @@
 
     <div class="project-grid">
 
-      <!-- 1 — Benti Fluha (FEATURED: Spans both columns) -->
-      <div class="project-card featured" data-category="web" style="animation-delay:0.05s">
+      <!-- 1 — RetroBooth (FEATURED: Spans both columns) -->
+      <div class="project-card featured" data-category="desktop" style="animation-delay:0.05s">
         <div class="featured-preview">
           <div class="browser-bar">
             <div class="browser-dots" aria-hidden="true">
@@ -81,22 +81,58 @@
               <span class="browser-dot b-yellow"></span>
               <span class="browser-dot b-green"></span>
             </div>
-            <div class="browser-address" title="https://olibbeto.github.io/BentiFluha/">
+            <div class="browser-address" title="https://retrobooth.org">
               <i class="fa-solid fa-lock" aria-hidden="true"></i>
-              <span>olibbeto.github.io/BentiFluha</span>
+              <span>retrobooth.org</span>
             </div>
             <div class="browser-actions">
-              <span class="project-type-pill">// RESORT &amp; SPA</span>
+              <span class="project-type-pill">// RUST &amp; HARDWARE</span>
               <span class="project-status-pill"><span class="status-pulse-dot"></span> Live</span>
             </div>
           </div>
           <div class="featured-img-box">
-            <img src="images/benti-fluha.webp" alt="Screenshot of the Benti Fluha resort and spa website homepage hero section" width="1200" height="675" loading="lazy" decoding="async">
+            <img src="images/retrobooth.webp" alt="Screenshot of RetroBooth professional Windows photo booth software with real-time camera preview, filter engine, and print templates" width="1200" height="675" loading="lazy" decoding="async">
             <div class="overlay"></div>
           </div>
         </div>
         <div class="body">
           <span class="project-featured-tag">// FEATURED SHOWCASE</span>
+          <h2>
+            <a href="https://retrobooth.org" target="_blank" rel="noopener noreferrer" class="project-card-link">RetroBooth</a>
+          </h2>
+          <div class="project-case-study">
+            <div class="cs-row"><strong class="cs-label">Problem:</strong> Commercial event photo booths rely on expensive, fragmented software with rigid templates, clunky driver configurations, and high latency that frequently stall during live events.</div>
+            <div class="cs-row"><strong class="cs-label">What I built:</strong> A high-performance, offline-first Windows photo booth application built in Rust and egui, featuring dual operator Studio &amp; guest Kiosk modes, direct Canon EDSDK and Nikon SDK hardware integration via dedicated IPC host processes, automated 300 DPI composite template rendering, 3D LUT (.cube) color grading, and zero-latency Windows GDI printing.</div>
+            <div class="cs-row"><strong class="cs-label">Key challenge:</strong> Architecting a low-latency IPC protocol between the UI and native C++ camera SDK hosts, optimizing per-pixel CPU image compositing in Rust for instant 300 DPI strip output, and engineering a resilient guest kiosk state machine with single-shot retake workflows and PIN-protected operator controls.</div>
+          </div>
+          <div class="project-tags">
+            <span class="tag-chip">Rust</span>
+            <span class="tag-chip">egui</span>
+            <span class="tag-chip">Canon / Nikon SDK</span>
+            <span class="tag-chip">Windows GDI</span>
+            <span class="tag-chip">IPC</span>
+            <span class="tag-chip">Image Pipeline</span>
+          </div>
+          <div class="project-actions">
+            <a href="https://retrobooth.org" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
+              <i class="fa-solid fa-arrow-up-right-from-square"></i> Visit Website
+            </a>
+            <a href="https://retrobooth.org" target="_blank" rel="noopener noreferrer" class="btn btn-primary btn-sm">
+              <i class="fa-solid fa-download"></i> Download App
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 — Benti Fluha -->
+      <div class="project-card" data-category="web" style="animation-delay:0.1s">
+        <div class="img-wrap">
+          <span class="project-type-badge">// RESORT &amp; SPA</span>
+          <span class="project-status-badge"><span class="status-pulse-dot"></span> Live</span>
+          <img src="images/benti-fluha.webp" alt="Screenshot of the Benti Fluha resort and spa website homepage hero section" width="1200" height="675" loading="lazy" decoding="async">
+          <div class="overlay"></div>
+        </div>
+        <div class="body">
           <h2>
             <a href="https://olibbeto.github.io/BentiFluha/" target="_blank" rel="noopener noreferrer" class="project-card-link">Benti Fluha</a>
           </h2>
@@ -119,8 +155,8 @@
         </div>
       </div>
 
-      <!-- 2 — Interactive 3D Art Museum -->
-      <div class="project-card" data-category="3d web" style="animation-delay:0.1s">
+      <!-- 3 — Interactive 3D Art Museum -->
+      <div class="project-card" data-category="3d web" style="animation-delay:0.15s">
         <div class="img-wrap">
           <span class="project-type-badge">// 3D VIRTUAL SPACE</span>
           <span class="project-status-badge"><span class="status-pulse-dot dot-cyan"></span> 3D WebGL</span>
@@ -145,39 +181,6 @@
           <div class="project-actions">
             <a href="https://github.com/olibbeto" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
               <i class="fa-brands fa-github"></i> GitHub
-            </a>
-          </div>
-        </div>
-      </div>
-
-      <!-- 3 — RetroBooth (Desktop Photo Booth Software) -->
-      <div class="project-card" data-category="desktop" style="animation-delay:0.15s">
-        <div class="img-wrap">
-          <span class="project-type-badge">// RUST &amp; HARDWARE</span>
-          <span class="project-status-badge"><span class="status-pulse-dot dot-accent"></span> Desktop App</span>
-          <img src="images/retrobooth.webp" alt="Screenshot of RetroBooth professional photo booth software interface with real-time camera preview, filter engine, and print templates" width="1200" height="675" loading="lazy" decoding="async">
-          <div class="overlay"></div>
-        </div>
-        <div class="body">
-          <h2>
-            <a href="https://github.com/olibbeto" target="_blank" rel="noopener noreferrer" class="project-card-link">RetroBooth</a>
-          </h2>
-          <div class="project-case-study">
-            <div class="cs-row"><strong class="cs-label">Problem:</strong> Commercial event photo booths rely on expensive, fragmented software with rigid templates, clunky driver configurations, and high latency that frequently stall during live events.</div>
-            <div class="cs-row"><strong class="cs-label">What I built:</strong> A high-performance, offline-first Windows photo booth application built in Rust and egui, featuring dual operator Studio &amp; guest Kiosk modes, direct Canon EDSDK and Nikon SDK hardware integration via dedicated IPC host processes, automated 300 DPI composite template rendering, 3D LUT (.cube) color grading, and zero-latency Windows GDI printing.</div>
-            <div class="cs-row"><strong class="cs-label">Key challenge:</strong> Architecting a low-latency IPC protocol between the UI and native C++ camera SDK hosts, optimizing per-pixel CPU image compositing in Rust for instant 300 DPI strip output, and engineering a resilient guest kiosk state machine with single-shot retake workflows and PIN-protected operator controls.</div>
-          </div>
-          <div class="project-tags">
-            <span class="tag-chip">Rust</span>
-            <span class="tag-chip">egui</span>
-            <span class="tag-chip">Canon / Nikon SDK</span>
-            <span class="tag-chip">Windows GDI</span>
-            <span class="tag-chip">IPC</span>
-            <span class="tag-chip">Image Pipeline</span>
-          </div>
-          <div class="project-actions">
-            <a href="retrobooth.org" target="_blank" rel="noopener noreferrer" class="btn btn-outline btn-sm">
-              <i class="fa-brands fa-github"></i> Live Demo
             </a>
           </div>
         </div>
