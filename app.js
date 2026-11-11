@@ -471,14 +471,13 @@ if (window.innerWidth > 900) {
 // ── 3D CARD TILT ──
 function applyTilt(el) {
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  if (el.classList.contains('project-card')) return;
   if (el.dataset.tilt) return;
   el.dataset.tilt = '1';
 
-  const isProject  = el.classList.contains('project-card');
-  const isFeatured = el.classList.contains('featured');
-  const MAX   = isFeatured ? 2.5 : (isProject ? 5 : 6);
-  const PERSP = isFeatured ? 1600 : 1100;
-  const SCALE = isFeatured ? 1.008 : 1.015;
+  const MAX   = 6;
+  const PERSP = 1100;
+  const SCALE = 1.015;
 
   // Shine overlay
   const shine = document.createElement('div');
@@ -682,10 +681,6 @@ function initReveal() {
 // Apply tilt immediately only to cards that are already visible (in .home section)
 if (window.innerWidth > 900) {
   document.querySelectorAll('.home .card, .home blockquote').forEach(applyTilt);
-  // Project cards have a 0.6s fadeUp CSS animation — apply tilt after it finishes
-  setTimeout(() => {
-    document.querySelectorAll('.project-card').forEach(applyTilt);
-  }, 900);
 }
 initReveal();
 
