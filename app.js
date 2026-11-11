@@ -958,3 +958,42 @@ document.querySelectorAll('.btn-disabled').forEach(btn => {
     p.innerHTML = p.innerHTML.replace(/\b202[0-9]\b/, currentYear);
   });
 })();
+
+// ── BROWSER BAR URL TYPEWRITER ──
+(function initBrowserAddressTypewriter() {
+  const addrSpan = document.querySelector('.browser-address span');
+  if (!addrSpan) return;
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+  const full = addrSpan.textContent.trim();
+  if (!full) return;
+  addrSpan.textContent = '';
+  let i = 0;
+  function typeNext() {
+    if (i < full.length) {
+      addrSpan.textContent += full[i++];
+      setTimeout(typeNext, 65);
+    }
+  }
+  setTimeout(typeNext, 750);
+})();
+
+// ── CORNER ACCENT BRACKETS & ENTRANCE HANDOFF ──
+(function initPortfolioCardFX() {
+  document.querySelectorAll('.project-card:not(.featured)').forEach(card => {
+    ['tl', 'br'].forEach(pos => {
+      const corner = document.createElement('span');
+      corner.className = `card-corner card-corner--${pos}`;
+      corner.setAttribute('aria-hidden', 'true');
+      card.appendChild(corner);
+    });
+  });
+
+  document.querySelectorAll('.project-card').forEach(card => {
+    card.addEventListener('animationend', e => {
+      if (e.animationName === 'fadeLeft' || e.animationName === 'fadeRight' || e.animationName === 'fadeUp') {
+        card.classList.add('entered');
+      }
+    });
+  });
+})();
+
