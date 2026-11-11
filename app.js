@@ -474,9 +474,11 @@ function applyTilt(el) {
   if (el.dataset.tilt) return;
   el.dataset.tilt = '1';
 
-  const isProject = el.classList.contains('project-card');
-  const MAX  = isProject ? 18 : 10;
-  const PERSP = isProject ? 600 : 1000;
+  const isProject  = el.classList.contains('project-card');
+  const isFeatured = el.classList.contains('featured');
+  const MAX   = isFeatured ? 2.5 : (isProject ? 5 : 6);
+  const PERSP = isFeatured ? 1600 : 1100;
+  const SCALE = isFeatured ? 1.008 : 1.015;
 
   // Shine overlay
   const shine = document.createElement('div');
@@ -495,7 +497,8 @@ function applyTilt(el) {
     currentRX = lerp(currentRX, targetRX, 0.12);
     currentRY = lerp(currentRY, targetRY, 0.12);
 
-    el.style.transform = `perspective(${PERSP}px) rotateX(${currentRX}deg) rotateY(${currentRY}deg) scale3d(${isHovered ? 1.04 : 1},${isHovered ? 1.04 : 1},${isHovered ? 1.04 : 1})`;
+    const s = isHovered ? SCALE : 1;
+    el.style.transform = `perspective(${PERSP}px) rotateX(${currentRX}deg) rotateY(${currentRY}deg) scale3d(${s},${s},${s})`;
 
     const dx = currentRY / MAX;
     const dy = -currentRX / MAX;
